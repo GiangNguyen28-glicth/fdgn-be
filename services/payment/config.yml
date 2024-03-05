@@ -1,0 +1,37 @@
+http:
+  host: 'localhost'
+  port: 8080
+
+rabbit:
+  protocol: amqp
+  hostname: localhost
+  username: guest
+  password: guest
+  port: 5672
+  heartbeat: 1
+  queue: 'localhost'
+  retry:
+    # forever: true
+    retries: 5
+    factor: 1
+    minTimeout: 3000
+    maxTimeout: 20000
+mongoose:
+  uri: mongodb://localhost:27017/microservice
+  
+redis:
+  host: localhost
+  port: 6379
+  password: null
+  db: 1
+
+throttler:
+  - name: short
+    ttl: 1000
+    limit: 3
+  - name: medium
+    ttl: 10000
+    limit: 20
+  - name: long
+    ttl: 60000
+    limit: 100

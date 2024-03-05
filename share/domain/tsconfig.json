@@ -1,0 +1,13 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "outDir": "./dist",
+    "strictNullChecks": true,
+    "paths": {
+      "@domain/": ["share/domain/src/"],
+      "@domain/*": ["share/domain/src/*"]
+    }
+  },
+  "include": ["src/**/*"]
+}

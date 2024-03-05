@@ -1,0 +1,13 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "outDir": "./dist",
+    "strictNullChecks": true,
+    "paths": {
+      "@product/": ["services/product/src/"],
+      "@product/*": ["services/product/src/*"]
+    }
+  },
+  "include": ["src/**/*"]
+}
