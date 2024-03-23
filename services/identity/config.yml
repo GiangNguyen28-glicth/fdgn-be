@@ -1,0 +1,58 @@
+http:
+  host: 'localhost'
+  port: 4016
+  contextPath: identity
+
+description: 'Identity Service'
+
+rabbit:
+  protocol: amqp
+  hostname: localhost
+  username: guest
+  password: guest
+  port: 5672
+  heartbeat: 1
+  queue: 'localhost'
+  retry:
+    # forever: true
+    retries: 5
+    factor: 1
+    minTimeout: 3000
+    maxTimeout: 20000
+
+typeOrm:
+  type: mysql
+  host: localhost
+  username: root
+  password: '123456'
+  port: 3306
+  synchronize: true
+  autoLoadEntities: true
+  database: eca_crawler
+  logging: true
+  
+redis:
+  host: localhost
+  port: 6379
+  password: null
+  db: 1
+
+mongoose:
+  uri: mongodb://localhost:27017/microservice
+
+throttler:
+  - name: short
+    ttl: 1000
+    limit: 3
+  - name: medium
+    ttl: 10000
+    limit: 20
+  - name: long
+    ttl: 60000
+    limit: 100
+
+authConfig:
+  accessTokenKey: HAHAHAHAAHA
+  refreshTokenKey: HEHEHEEHE
+  accessTokenExpiresTime: 6000
+  refreshTokenExpiresTime: 3600000

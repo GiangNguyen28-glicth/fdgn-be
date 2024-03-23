@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { IEntity, Transform } from '@fdgn/common';
 
-import { PRODUCT_STATUS } from '@domain/const';
+import { PRODUCT_STATUS } from '@domain/common/const';
 
 export type ProductModel = Model<Product>;
 

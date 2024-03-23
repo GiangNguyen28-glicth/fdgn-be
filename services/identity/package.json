@@ -1,0 +1,20 @@
+{
+  "name": "@fdgn/identity-service",
+  "version": "1.0.1",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "rimraf -rf dist && nest build -p tsconfig.json",
+    "prepublishOnly": "yarn build",
+    "dev": "nest start --watch -p tsconfig.json",
+    "start": "node dist/main.js"
+  },
+  "dependencies": {
+    "@fdgn/share-domain": "^1.0.1",
+    "@nestjs/jwt": "^10.2.0",
+    "@nestjs/passport": "^10.0.3",
+    "accesscontrol": "^2.2.1",
+    "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1"
+  }
+}

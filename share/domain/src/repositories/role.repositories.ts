@@ -1,6 +1,6 @@
 import { DBS_TYPE, ICrudRepo } from '@fdgn/common';
-import { MongoRepo } from '@fdgn/mongoose';
 import { InjectModel } from '@nestjs/mongoose';
+import { MongoRepo } from '@fdgn/mongoose';
 
 import { Role, RoleModel } from '../entities';
 

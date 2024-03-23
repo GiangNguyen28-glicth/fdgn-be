@@ -1,6 +1,9 @@
 http:
   host: 'localhost'
-  port: 8080
+  port: 4017
+  contextPath: product/api/v1
+
+description: 'Product Service'
 
 rabbit:
   protocol: amqp
@@ -20,10 +23,12 @@ mongoose:
   uri: mongodb://localhost:27017/microservice
   
 redis:
-  host: localhost
-  port: 6379
+  url: localhost
   password: null
-  db: 1
+  socket:
+    port: 6379
+    connectTimeout: 60000
+  database: 1
 
 throttler:
   - name: short

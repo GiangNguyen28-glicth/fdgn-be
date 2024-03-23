@@ -2,6 +2,7 @@ import { IEntity, MongoID, Transform } from '@fdgn/common';
 import { Model } from 'mongoose';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Role } from './role.entities';
+import { RegisterType } from '../common/const';
 
 export type UserModel = Model<User>;
 
@@ -10,10 +11,10 @@ export class User implements IEntity {
   @Transform(({ value }) => value.toString())
   _id: string;
 
-  @Prop({ trim: true, required: true })
+  @Prop({ trim: true })
   name: string;
 
-  @Prop({ trim: true, required: true })
+  @Prop({ trim: true })
   email: string;
 
   @Prop({ trim: true })
@@ -22,8 +23,11 @@ export class User implements IEntity {
   @Prop({ type: MongoID, ref: Role.name })
   role: string | Role;
 
-  @Prop({ default: false })
-  isConfirm: boolean;
+  @Prop({ type: String, trim: true, enum: Object.values(RegisterType) })
+  registerType: RegisterType;
+
+  @Prop()
+  isConfirmMail: boolean;
 
   @Prop({ trim: true })
   slug: string;

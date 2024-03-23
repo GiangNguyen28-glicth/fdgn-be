@@ -1,0 +1,56 @@
+http:
+  host: 'localhost'
+  port: 4019
+
+description: 'Notification Service'
+
+rabbit:
+  protocol: amqp
+  hostname: localhost
+  username: guest
+  password: guest
+  port: 5672
+  heartbeat: 1
+  queue: 'localhost'
+  retry:
+    # forever: true
+    retries: 5
+    factor: 1
+    minTimeout: 3000
+    maxTimeout: 20000
+mongoose:
+  uri: mongodb://localhost:27017/microservice
+  
+redis:
+  host: localhost
+  port: 6379
+  password: null
+  db: 1
+
+mail: 
+  userName: giangnguyen3246@gmail.com
+  password: xamrpyjibvqqbiyq
+  service: 'gmail'
+
+throttler:
+  - name: short
+    ttl: 1000
+    limit: 3
+  - name: medium
+    ttl: 10000
+    limit: 20
+  - name: long
+    ttl: 60000
+    limit: 100
+
+mailConsume:
+  sendMail:
+    queue: notification_send_mail
+    prefetchCount: 2
+    queueType: quorum
+    exchange: notification
+    routingKey: notification_send_mail
+    deadLetterExchange: notification
+    deadLetterRoutingKey: notification_send_mail.errors
+    retryTime: 3000
+    maxRetries: 1
