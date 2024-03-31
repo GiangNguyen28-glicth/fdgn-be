@@ -39,11 +39,9 @@ pipeline {
                         // def packages = jsonParse(packagesString)
                         def jsonSlurper = new JsonSlurper()
                         def packages = jsonSlurper.parseText(packagesString)
-                        echo "Packages ${packages}"
                         // changedPackages = packages
                         changedPackages = packages
                         
-                        echo "Changed services ${changedPackages}"
                     }
                 }
                 
@@ -53,17 +51,18 @@ pipeline {
         stage('Build images') {
             steps {
                 script {
-                    docker.withRegistry( '', registryCredential ) { 
+                    docker.withRegistry( '', registryCredential ) {
+                        echo "Changed services ${changedPackages}"
+                        changedPackages.each { p ->
+                            def name = p.name.replace('@', '').replace('/', '-')
+                            def imageName = "giangnguyen3246/${name}:${p.version}"
+                            def dockerImage = docker.build(imageName,"--build-arg SERVICE_PACKAGE_NAME=${p.name} --build-arg SERVICE_PACKAGE_VERSION=${p.version} --build-arg NPM_TOKEN=${SECRET} .")
+                            dockerImage.push()
+                            echo "Pushed Docker Image ${imageName} Successfully"
+                        } 
                         dockerImage.push() 
                     }
-                    echo "Hello world"
-                    changedPackages.each { p ->
-                        def name = p.name.replace('@', '').replace('/', '-')
-                        def imageName = "giangnguyen3246/${name}:${p.version}"
-                        def dockerImage = docker.build(imageName,"--build-arg SERVICE_PACKAGE_NAME=${p.name} --build-arg SERVICE_PACKAGE_VERSION=${p.version} --build-arg NPM_TOKEN=${SECRET} .")
-                        dockerImage.push()
-                        echo "Pushed Docker Image ${imageName} Successfully"
-                    }
+                    
                 }
             }
         }
