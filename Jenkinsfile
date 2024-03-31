@@ -6,6 +6,12 @@ def jsonParse(def json) {
 }
 
 pipeline {
+    environment { 
+        registryCredential = 'docker-hub-2' 
+        dockerImage = '' 
+        changedPackages = []
+
+    }
     agent any
     
     stages {
@@ -36,7 +42,6 @@ pipeline {
                         def packages = jsonSlurper.parseText(packagesString)
                         echo "Packages ${packages}"
                         // changedPackages = packages
-                        changedPackages = []
                         changedPackages = packages
                         
                         echo "Changed services ${changedPackages}"
