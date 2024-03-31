@@ -53,9 +53,9 @@ pipeline {
                         dockerImage.push() 
                     }
                     echo "Hello world"
-                    for(p in changedPackages) {
+                    changedPackages.each { map ->
                         def name = p.name.replace('@', '').replace('/', '-')
-                        def imageName = "${dockerHub}/${name}:${p.version}"
+                        def imageName = "giangnguyen3246/${name}:${p.version}"
                         def dockerImage = docker.build(imageName,"--build-arg SERVICE_PACKAGE_NAME=${p.name} --build-arg SERVICE_PACKAGE_VERSION=${p.version} --build-arg NPM_TOKEN=${SECRET} .")
                         dockerImage.push()
                         echo "Pushed Docker Image ${imageName} Successfully"
