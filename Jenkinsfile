@@ -19,7 +19,7 @@ pipeline {
         stage('Build and Publish') {
             steps {
                 withDockerRegistry(credentialsId: 'docker-hub-2', url: 'https://index.docker.io/v1/') {
-                    sh 'yarn install'
+                    // sh 'yarn install'
                     sh 'yarn build'
                     
                     // Run 'yarn lerna list --json' and parse the output
