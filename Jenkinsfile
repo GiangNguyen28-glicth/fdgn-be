@@ -24,13 +24,13 @@ pipeline {
                         // sh 'yarn build'
                     
                     // Run 'yarn lerna list --json' and parse the output
-                        def packagesString = sh (
+                        def rawStdout = sh (
                             script: 'yarn lerna list --json',
                             returnStdout: true
                         ).trim()
-                        def jsonStartIndex = packagesString.indexOf('[')
-                        def jsonEndIndex = packagesString.lastIndexOf(']') + 1
-                        def packagesString = packagesString.substring(jsonStartIndex, jsonEndIndex)
+                        def jsonStartIndex = rawStdout.indexOf('[')
+                        def jsonEndIndex = rawStdout.lastIndexOf(']') + 1
+                        def packagesString = rawStdout.substring(jsonStartIndex, jsonEndIndex)
                         echo "====packagesString services ${packages}===="
                         // def packages = jsonParse(packagesString)
                         def jsonSlurper = new JsonSlurper()
