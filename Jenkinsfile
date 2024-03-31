@@ -28,11 +28,13 @@ pipeline {
                             script: 'yarn lerna list --json',
                             returnStdout: true
                         ).trim()
-                        
-                        echo "====packagesString services ${packagesString}===="
+                        def jsonStartIndex = packagesString.indexOf('[')
+                        def jsonEndIndex = packagesString.lastIndexOf(']') + 1
+                        def packages = packagesString.substring(jsonStartIndex, jsonEndIndex)
+                        echo "====packagesString services ${packages}===="
                         // def packages = jsonParse(packagesString)
                         def jsonSlurper = new JsonSlurper()
-                        def jsonObject = jsonSlurper.parseText(packagesString)
+                        def jsonObject = jsonSlurper.parseText(packages)
                         // changedPackages = packages
                         changedPackages = []
                         changedPackages = changedPackages.collect({ name -> packages.find({ p -> p.name == name }) })
