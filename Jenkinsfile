@@ -30,11 +30,11 @@ pipeline {
                         ).trim()
                         def jsonStartIndex = packagesString.indexOf('[')
                         def jsonEndIndex = packagesString.lastIndexOf(']') + 1
-                        def packages = packagesString.substring(jsonStartIndex, jsonEndIndex)
+                        def packagesString = packagesString.substring(jsonStartIndex, jsonEndIndex)
                         echo "====packagesString services ${packages}===="
                         // def packages = jsonParse(packagesString)
                         def jsonSlurper = new JsonSlurper()
-                        def jsonObject = jsonSlurper.parseText(packages)
+                        def packages = jsonSlurper.parseText(packagesString)
                         // changedPackages = packages
                         changedPackages = []
                         changedPackages = changedPackages.collect({ name -> packages.find({ p -> p.name == name }) })
