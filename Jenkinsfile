@@ -36,9 +36,9 @@ pipeline {
                     // def packages = jsonParse(packagesString)
                     def jsonSlurper = new JsonSlurper()
                     def packages = jsonSlurper.parseText(packagesString)
-                    changedPackages = []
+                    // changedPackages = []
                     // changedPackages = packages
-                    changedPackages = packages
+                    // changedPackages = packages
                     echo "Done Build and Publish"
                 }
                 
