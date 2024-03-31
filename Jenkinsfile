@@ -35,7 +35,7 @@ pipeline {
                     def packagesString = rawStdout.substring(jsonStartIndex, jsonEndIndex)
                     // def packages = jsonParse(packagesString)
                     def jsonSlurper = new JsonSlurper()
-                    def packages = jsonSlurper.parseText(packagesString)
+                    packages = jsonSlurper.parseText(packagesString)
                     // changedPackages = []
                     // changedPackages = packages
                     // changedPackages = packages
