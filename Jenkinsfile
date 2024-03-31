@@ -35,7 +35,7 @@ pipeline {
                         def jsonEndIndex = rawStdout.lastIndexOf(']') + 1
                         def packagesString = rawStdout.substring(jsonStartIndex, jsonEndIndex)
                         // def packages = jsonParse(packagesString)
-                        def jsonSlurper = new JsonSlurper()
+                        def jsonSlurper = new groovy.json.JsonSlurperClassic()
                         packages = jsonSlurper.parseText(packagesString)
                         // changedPackages = []
                         // changedPackages = packages
