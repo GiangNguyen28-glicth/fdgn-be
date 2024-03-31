@@ -11,7 +11,7 @@ WORKDIR /app
 RUN apk add --no-cache build-base python3 vim && \
     npm install -g yarn --force && \
     yarn set version stable && \
-    && rm -rf /var/cache/apk/*
+    rm -rf /var/cache/apk/*
 
 # COPY package.json yarn.lock ./
 
