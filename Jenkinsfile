@@ -11,6 +11,7 @@ pipeline {
     stages {
         stage('Cloning our Git') {
             steps {
+                echo "Changed services ggg"
                 git 'https://github.com/GiangNguyen28-glicth/fdgn-be.git'
             }
         }
