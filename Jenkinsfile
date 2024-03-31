@@ -16,15 +16,16 @@ pipeline {
                 withDockerRegistry(credentialsId: 'docker-hub-2', url: 'https://index.docker.io/v1/') {
                     sh 'yarn install'
                     sh 'yarn build'
-                }
-                def packagesString = sh (
-                    script: 'yarn lerna list --json',
-                    returnStdout: true
+                    def packagesString = sh (
+                        script: 'yarn lerna list --json',
+                        returnStdout: true
                     ).trim()
-                def packages = jsonParse(packagesString)
-                changedPackages = []
-                changedPackages = packages
-                echo "Changed services ${changedPackages}"
+                    def packages = jsonParse(packagesString)
+                    changedPackages = []
+                    changedPackages = packages
+                    echo "Changed services ${changedPackages}"
+                }
+                
             }
         }
         stage('Build images') { 
