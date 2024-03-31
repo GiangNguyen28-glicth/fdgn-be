@@ -24,7 +24,7 @@ pipeline {
                     
                     // Run 'yarn lerna list --json' and parse the output
                     def packagesString = sh (
-                        script: 'yarn lerna list --json',
+                        script: 'yarn lerna list',
                         returnStdout: true
                     ).trim()
                     

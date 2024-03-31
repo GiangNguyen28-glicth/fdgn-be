@@ -6,6 +6,6 @@ import { ApiTags } from '@nestjs/swagger';
 export class AppController {
   @Get('')
   healthCheck() {
-    return 'This is Oder service';
+    return 'This is Oder service 1';
   }
 }
