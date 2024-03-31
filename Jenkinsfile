@@ -34,9 +34,10 @@ pipeline {
                         // def packages = jsonParse(packagesString)
                         def jsonSlurper = new JsonSlurper()
                         def packages = jsonSlurper.parseText(packagesString)
+                        echo "Packages ${packages}"
                         // changedPackages = packages
                         changedPackages = []
-                        changedPackages = changedPackages.collect({ name -> packages.find({ p -> p.name == name }) })
+                        changedPackages = changedPackages.collect({ name -> packages.find({ p -> p}) })
                         
                         echo "Changed services ${changedPackages}"
                     }
