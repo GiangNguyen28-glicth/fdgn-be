@@ -30,7 +30,9 @@ pipeline {
                         ).trim()
                         
                         echo "====packagesString services ${packagesString}===="
-                        def packages = jsonParse(packagesString)
+                        // def packages = jsonParse(packagesString)
+                        def jsonSlurper = new JsonSlurper()
+                        def jsonObject = jsonSlurper.parseText(packagesString)
                         // changedPackages = packages
                         changedPackages = []
                         changedPackages = changedPackages.collect({ name -> packages.find({ p -> p.name == name }) })
