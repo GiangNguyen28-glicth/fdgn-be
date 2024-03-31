@@ -8,8 +8,7 @@ WORKDIR /app
 #     YARN_NODE_LINKER="node-modules" \
 #     YARN_NPM_REGISTRY_SERVER="https://registry.npmjs.org" \
 #     YARN_ENABLE_SCRIPTS=false
-RUN apk add --no-cache build-base python3 vim && \
-    npm install -g yarn --force && \
+RUN npm install -g yarn --force && \
     yarn set version stable && \
     rm -rf /var/cache/apk/*
 
