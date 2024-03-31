@@ -4,7 +4,7 @@ import groovy.json.JsonSlurper
 // def jsonParse(def json) {
 //     new groovy.json.JsonSlurperClassic().parseText(json)
 // }
-// changedPackages = []
+packages = []
 
 pipeline {
     environment { 
