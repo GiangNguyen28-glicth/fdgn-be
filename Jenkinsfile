@@ -41,15 +41,15 @@ pipeline {
                         // changedPackages = packages
                         // changedPackages = packages
                         echo "Done Build and Publish"
-                        packages.each { p ->
-                            def name = p.name.replace('@', '').replace('/', '-')
-                            def imageName = "giangnguyen3246/${name}:${p.version}"
-                            sh 'docker build -t giangnguyen3246/${imageName} --build-arg SERVICE_PACKAGE_NAME=${p.name} --build-arg SERVICE_PACKAGE_VERSION=${p.version} .'
-                            sh 'docker push giangnguyen3246/${imageName}'
-                            // def dockerImage = docker.build(imageName,"--build-arg SERVICE_PACKAGE_NAME=${p.name} --build-arg SERVICE_PACKAGE_VERSION=${p.version} --build-arg NPM_TOKEN=${SECRET} .")
-                            // dockerImage.push()
-                            echo "Pushed Docker Image ${imageName} Successfully"
-                        } 
+                        // packages.each { p ->
+                        //     def name = p.name.replace('@', '').replace('/', '-')
+                        //     def imageName = "giangnguyen3246/${name}:${p.version}"
+                        //     sh 'docker build -t giangnguyen3246/${imageName} --build-arg SERVICE_PACKAGE_NAME=${p.name} --build-arg SERVICE_PACKAGE_VERSION=${p.version} .'
+                        //     sh 'docker push giangnguyen3246/${imageName}'
+                        //     // def dockerImage = docker.build(imageName,"--build-arg SERVICE_PACKAGE_NAME=${p.name} --build-arg SERVICE_PACKAGE_VERSION=${p.version} --build-arg NPM_TOKEN=${SECRET} .")
+                        //     // dockerImage.push()
+                        //     echo "Pushed Docker Image ${imageName} Successfully"
+                        // } 
                     }
 
                     
@@ -58,24 +58,24 @@ pipeline {
             }
         }
         
-    //     stage('Build images') {
-    //         steps {
-    //             script {
-    //                 // echo "Over here"
-    //                 echo "Changed services ${packages}"
-    //                 withDockerRegistry(credentialsId: 'docker-hub-2', url: 'https://index.docker.io/v1/') {
-    //                     packages.each { p ->
-    //                         def name = p.name.replace('@', '').replace('/', '-')
-    //                         def imageName = "giangnguyen3246/${name}:${p.version}"
-    //                         def dockerImage = docker.build(imageName,"--build-arg SERVICE_PACKAGE_NAME=${p.name} --build-arg SERVICE_PACKAGE_VERSION=${p.version} --build-arg NPM_TOKEN=${SECRET} .")
-    //                         dockerImage.push()
-    //                         echo "Pushed Docker Image ${imageName} Successfully"
-    //                     } 
-    //                     dockerImage.push() 
-    //                 }
+        stage('Build images') {
+            steps {
+                script {
+                    // echo "Over here"
+                    echo "Changed services ${packages}"
+                    withDockerRegistry(credentialsId: 'docker-hub-2', url: 'https://index.docker.io/v1/') {
+                        packages.each { p ->
+                            def name = p.name.replace('@', '').replace('/', '-')
+                            def imageName = "giangnguyen3246/${name}:${p.version}"
+                            def dockerImage = docker.build(imageName,"--build-arg SERVICE_PACKAGE_NAME=${p.name} --build-arg SERVICE_PACKAGE_VERSION=${p.version} --build-arg NPM_TOKEN=${SECRET} .")
+                            dockerImage.push()
+                            echo "Pushed Docker Image ${imageName} Successfully"
+                        } 
+                        dockerImage.push() 
+                    }
                     
-    //             }
-    //         }
-    //     }
+                }
+            }
+        }
     }
 }
