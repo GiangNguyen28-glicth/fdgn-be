@@ -1,4 +1,5 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Req } from '@nestjs/common';
+import { Request } from 'express';
 import { UNITS_OF_TIME } from '@fdgn/common';
 
 import { ProductService } from './product.service';
@@ -31,7 +32,9 @@ export class ProductController {
   }
 
   @Get('test-3')
-  test3() {
+  test3(@Req() req: Request) {
+    console.log(req);
+    console.log('Req');
     return 'Test 3';
   }
 }

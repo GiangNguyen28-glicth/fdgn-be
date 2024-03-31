@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  jenkins:
+    container_name: 'jenkins-container'
+    privileged: true
+    build: .
+    ports:
+      - '8090:8080'
+      - '50000:50000'
+    volumes:
+      - jenkins-data:/var/jenkins_home
+    restart: unless-stopped
+
+volumes:
+  jenkins-data:

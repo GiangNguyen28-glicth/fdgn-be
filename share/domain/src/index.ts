@@ -1,3 +1,3 @@
 export * from './entities';
-export * from './common/const';
+export * from './common';
 export * from './repositories';

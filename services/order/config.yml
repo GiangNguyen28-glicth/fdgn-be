@@ -1,9 +1,9 @@
 http:
   host: 'localhost'
   port: 4017
-  contextPath: product
+  contextPath: order
 
-description: 'Product Service'
+description: 'Order Service'
 
 rabbit:
   protocol: amqp
