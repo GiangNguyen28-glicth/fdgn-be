@@ -29,7 +29,7 @@ pipeline {
                             returnStdout: true
                         ).trim()
                         
-                        echo "packagesString services ${packagesString}"
+                        echo "====packagesString services ${packagesString}===="
                         def packages = jsonParse(packagesString)
                         changedPackages = packages
                         
