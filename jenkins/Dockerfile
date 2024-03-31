@@ -1,3 +1,4 @@
+
 FROM jenkins/jenkins:lts
 
 USER root
@@ -12,6 +13,11 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - && \
+    apt-get install -y nodejs && \
+    npm install -g yarn && \
+    rm -rf /var/lib/apt/lists/*
+
 USER jenkins
 
-# docker run -d --name jenkins -p 8090:8080 -p 50000:50000 -v D:\jenkins:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock my-jenkins-image
+# docker run -d --name jenkins -p 8090:8080 -p 50000:50000 -v D:\jenkins:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -v C:\Users\diepn\AppData\Local\Yarn:/usr/local/yarn my-jenkins-image
