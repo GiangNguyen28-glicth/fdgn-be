@@ -7,10 +7,6 @@ def jsonParse(def json) {
 
 pipeline {
     agent any
-
-    tools {
-        yarn 'Yarn'
-    }
     
     stages {
         stage('Cloning our Git') {
