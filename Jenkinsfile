@@ -24,25 +24,20 @@ pipeline {
         stage('Build and Publish') {
             steps {
                 script {
-                    withDockerRegistry(credentialsId: 'docker-hub-2', url: 'https://index.docker.io/v1/') {
-                        // sh 'yarn install'
-                        // sh 'yarn build'
-                    
-                    // Run 'yarn lerna list --json' and parse the output
-                        def rawStdout = sh (
+                    // sh 'yarn install'
+                    // sh 'yarn build'
+                    def rawStdout = sh (
                             script: 'yarn lerna list --json',
                             returnStdout: true
                         ).trim()
-                        def jsonStartIndex = rawStdout.indexOf('[')
-                        def jsonEndIndex = rawStdout.lastIndexOf(']') + 1
-                        def packagesString = rawStdout.substring(jsonStartIndex, jsonEndIndex)
-                        // def packages = jsonParse(packagesString)
-                        def jsonSlurper = new JsonSlurper()
-                        def packages = jsonSlurper.parseText(packagesString)
-                        // changedPackages = packages
-                        changedPackages = packages
-                        
-                    }
+                    def jsonStartIndex = rawStdout.indexOf('[')
+                    def jsonEndIndex = rawStdout.lastIndexOf(']') + 1
+                    def packagesString = rawStdout.substring(jsonStartIndex, jsonEndIndex)
+                    // def packages = jsonParse(packagesString)
+                    def jsonSlurper = new JsonSlurper()
+                    def packages = jsonSlurper.parseText(packagesString)
+                    // changedPackages = packages
+                    changedPackages = packages
                 }
                 
             }
@@ -51,7 +46,7 @@ pipeline {
         stage('Build images') {
             steps {
                 script {
-                    docker.withRegistry( '', registryCredential ) {
+                    withDockerRegistry(credentialsId: 'docker-hub-2', url: 'https://index.docker.io/v1/') {
                         echo "Changed services ${changedPackages}"
                         changedPackages.each { p ->
                             def name = p.name.replace('@', '').replace('/', '-')
