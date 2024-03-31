@@ -1,10 +1,10 @@
 import groovy.json.JsonSlurper
 
-@NonCPS
-def jsonParse(def json) {
-    new groovy.json.JsonSlurperClassic().parseText(json)
-}
-changedPackages = []
+// @NonCPS
+// def jsonParse(def json) {
+//     new groovy.json.JsonSlurperClassic().parseText(json)
+// }
+// changedPackages = []
 
 pipeline {
     environment { 
@@ -36,6 +36,7 @@ pipeline {
                     // def packages = jsonParse(packagesString)
                     def jsonSlurper = new JsonSlurper()
                     def packages = jsonSlurper.parseText(packagesString)
+                    changedPackages = []
                     // changedPackages = packages
                     changedPackages = packages
                     echo "Done Build and Publish"
