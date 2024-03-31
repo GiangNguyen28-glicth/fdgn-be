@@ -23,16 +23,16 @@ pipeline {
                     sh 'yarn build'
                     
                     // Run 'yarn lerna list --json' and parse the output
-                    def packagesString = sh (
-                        script: 'yarn lerna list',
-                        returnStdout: true
-                    ).trim()
+                    // def packagesString = sh (
+                    //     script: 'yarn lerna list',
+                    //     returnStdout: true
+                    // ).trim()
                     
-                    def packages = jsonParse(packagesString)
-                    changedPackages = packages
+                    // def packages = jsonParse(packagesString)
+                    // changedPackages = packages
                     
-                    echo "Changed services ${changedPackages}"
-                    echo "Changed services ${changedPackages}"
+                    // echo "Changed services ${changedPackages}"
+                    // echo "Changed services ${changedPackages}"
                 }
             }
         }
