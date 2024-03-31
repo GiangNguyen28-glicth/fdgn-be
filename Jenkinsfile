@@ -47,8 +47,9 @@ pipeline {
         stage('Build images') {
             steps {
                 script {
+                    echo "Over here"
+                    echo "Changed services ${changedPackages}"
                     withDockerRegistry(credentialsId: 'docker-hub-2', url: 'https://index.docker.io/v1/') {
-                        echo "Changed services ${changedPackages}"
                         changedPackages.each { p ->
                             def name = p.name.replace('@', '').replace('/', '-')
                             def imageName = "giangnguyen3246/${name}:${p.version}"
