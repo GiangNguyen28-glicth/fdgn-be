@@ -31,7 +31,6 @@ pipeline {
                         def jsonStartIndex = rawStdout.indexOf('[')
                         def jsonEndIndex = rawStdout.lastIndexOf(']') + 1
                         def packagesString = rawStdout.substring(jsonStartIndex, jsonEndIndex)
-                        echo "====packagesString services ${packages}===="
                         // def packages = jsonParse(packagesString)
                         def jsonSlurper = new JsonSlurper()
                         def packages = jsonSlurper.parseText(packagesString)
