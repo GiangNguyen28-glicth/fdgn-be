@@ -16,6 +16,7 @@ RUN apt-get update && \
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - && \
     apt-get install -y nodejs && \
     npm install -g yarn && \
+    npm i -g @nestjs/cli && \
     rm -rf /var/lib/apt/lists/*
 
 USER jenkins

@@ -29,10 +29,10 @@ pipeline {
                             returnStdout: true
                         ).trim()
                         
+                        echo "packagesString services ${packages}"
                         def packages = jsonParse(packagesString)
                         changedPackages = packages
                         
-                        echo "Changed services ${changedPackages}"
                         echo "Changed services ${changedPackages}"
                     }
                 }
