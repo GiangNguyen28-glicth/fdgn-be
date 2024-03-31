@@ -44,24 +44,24 @@ pipeline {
             }
         }
         
-        stage('Build images') {
-            steps {
-                script {
-                    echo "Over here"
-                    echo "Changed services ${changedPackages}"
-                    withDockerRegistry(credentialsId: 'docker-hub-2', url: 'https://index.docker.io/v1/') {
-                        changedPackages.each { p ->
-                            def name = p.name.replace('@', '').replace('/', '-')
-                            def imageName = "giangnguyen3246/${name}:${p.version}"
-                            def dockerImage = docker.build(imageName,"--build-arg SERVICE_PACKAGE_NAME=${p.name} --build-arg SERVICE_PACKAGE_VERSION=${p.version} --build-arg NPM_TOKEN=${SECRET} .")
-                            dockerImage.push()
-                            echo "Pushed Docker Image ${imageName} Successfully"
-                        } 
-                        dockerImage.push() 
-                    }
+        // stage('Build images') {
+        //     steps {
+        //         script {
+        //             echo "Over here"
+        //             echo "Changed services ${changedPackages}"
+        //             withDockerRegistry(credentialsId: 'docker-hub-2', url: 'https://index.docker.io/v1/') {
+        //                 changedPackages.each { p ->
+        //                     def name = p.name.replace('@', '').replace('/', '-')
+        //                     def imageName = "giangnguyen3246/${name}:${p.version}"
+        //                     def dockerImage = docker.build(imageName,"--build-arg SERVICE_PACKAGE_NAME=${p.name} --build-arg SERVICE_PACKAGE_VERSION=${p.version} --build-arg NPM_TOKEN=${SECRET} .")
+        //                     dockerImage.push()
+        //                     echo "Pushed Docker Image ${imageName} Successfully"
+        //                 } 
+        //                 dockerImage.push() 
+        //             }
                     
-                }
-            }
-        }
+        //         }
+        //     }
+        // }
     }
 }
