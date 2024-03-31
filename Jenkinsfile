@@ -31,7 +31,9 @@ pipeline {
                         
                         echo "====packagesString services ${packagesString}===="
                         def packages = jsonParse(packagesString)
-                        changedPackages = packages
+                        // changedPackages = packages
+                        changedPackages = []
+                        changedPackages = changedPackages.collect({ name -> packages.find({ p -> p.name == name }) })
                         
                         echo "Changed services ${changedPackages}"
                     }
