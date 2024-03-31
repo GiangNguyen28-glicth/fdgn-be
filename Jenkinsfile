@@ -31,6 +31,7 @@ pipeline {
                     changedPackages = packages
                     
                     echo "Changed services ${changedPackages}"
+                    echo "Changed services ${changedPackages}"
                 }
             }
         }
