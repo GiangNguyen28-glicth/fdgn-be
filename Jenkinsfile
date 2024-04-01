@@ -16,8 +16,9 @@ pipeline {
     stages {
         stage('Cloning our Git') {
             steps {
-                echo "Changed services ggg"
-                git 'https://github.com/GiangNguyen28-glicth/fdgn-be.git'
+                sh 'git config --global user.email "giangnguyen3246@gmail.com"'
+                sh 'git config --global user.name "giangnt"'
+                sh 'git "https://github.com/GiangNguyen28-glicth/fdgn-be.git"'
             }
         }
         
