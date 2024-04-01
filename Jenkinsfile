@@ -26,7 +26,7 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'docker-hub-2', url: 'https://index.docker.io/v1/') {
-                        withCredentials([usernamePassword(credentialsId: 'github', usernameVariable: '${GIT_USERNAME}', passwordVariable: '$GIT_PASSWORD$')]) {
+                        withCredentials([usernamePassword(credentialsId: 'github', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
                             sh 'yarn lerna publish prerelease --preid=beta --ignore-scripts --exact --yes'
                         }
         
