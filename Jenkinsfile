@@ -18,7 +18,7 @@ pipeline {
             steps {
                 sh 'git config --global user.email "giangnguyen3246@gmail.com"'
                 sh 'git config --global user.name "giangnt"'
-                sh 'git "https://github.com/GiangNguyen28-glicth/fdgn-be.git"'
+                git "https://github.com/GiangNguyen28-glicth/fdgn-be.git"
             }
         }
         
