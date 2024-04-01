@@ -25,6 +25,7 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'docker-hub-2', url: 'https://index.docker.io/v1/') {
+                        sh 'yarn lerna publish prerelease --preid=beta --ignore-scripts --exact --yes'
                         // sh 'yarn install'
                         // sh 'yarn build'
                         def rawStdout = sh (
