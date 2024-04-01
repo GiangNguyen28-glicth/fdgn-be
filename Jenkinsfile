@@ -26,9 +26,10 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'docker-hub-2', url: 'https://index.docker.io/v1/') {
-                        sshagent(credentials: ['github']) {
+                        withCredentials([usernamePassword(credentialsId: 'github', usernameVariable: '${GIT_USERNAME}', passwordVariable: '$GIT_PASSWORD$')]) {
                             sh 'yarn lerna publish prerelease --preid=beta --ignore-scripts --exact --yes'
                         }
+        
                         // sh 'yarn install'
                         // sh 'yarn build'
                         def rawStdout = sh (
