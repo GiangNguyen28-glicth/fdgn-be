@@ -15,17 +15,10 @@ pipeline {
     
     stages {
         stage('Cloning our Git') {
-            // steps {
-            //     sh 'git config --global user.email "giangnguyen3246@gmail.com"'
-            //     sh 'git config --global user.name "GiangNguyen28-glicth"'
-            //     git credentialsId: 'github', url: 'https://github.com/GiangNguyen28-glicth/fdgn-be.git'
-            // }
-            sshagent (credentials: ["github"]) {
+            steps {
                 sh 'git config --global user.email "giangnguyen3246@gmail.com"'
                 sh 'git config --global user.name "GiangNguyen28-glicth"'
-                git 'https://github.com/GiangNguyen28-glicth/fdgn-be.git'
-            // sh "echo ${params.Source_Code_Branch}"
-            // sh "echo ${ns}"
+                git credentialsId: 'github', url: 'https://github.com/GiangNguyen28-glicth/fdgn-be.git'
             }
         }
         
