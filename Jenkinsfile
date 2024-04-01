@@ -18,7 +18,7 @@ pipeline {
             steps {
                 sh 'git config --global user.email "giangnguyen3246@gmail.com"'
                 sh 'git config --global user.name "giangnt"'
-                git "https://github.com/GiangNguyen28-glicth/fdgn-be.git"
+                git credentialsId: 'github', url: 'https://github.com/GiangNguyen28-glicth/fdgn-be.git'
             }
         }
         
@@ -26,7 +26,7 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'docker-hub-2', url: 'https://index.docker.io/v1/') {
-                        sh 'yarn lerna publish prerelease --preid=beta --ignore-scripts --exact --yes'
+                        sh 'yarn lerna publish'
                         // sh 'yarn install'
                         // sh 'yarn build'
                         def rawStdout = sh (
