@@ -16,8 +16,6 @@ pipeline {
     stages {
         stage('Cloning our Git') {
             steps {
-                sh 'git config --global user.email "giangnguyen3246@gmail.com"'
-                sh 'git config --global user.name "GiangNguyen28-glicth"'
                 git credentialsId: 'github', url: 'https://github.com/GiangNguyen28-glicth/fdgn-be.git'
             }
         }
@@ -27,7 +25,9 @@ pipeline {
                 script {
                     withDockerRegistry(credentialsId: 'docker-hub-2', url: 'https://index.docker.io/v1/') {
                         withCredentials([usernamePassword(credentialsId: 'github', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
-                            // echo 'git password ${GIT_PASSWORD}'
+                            echo 'git password ${GIT_PASSWORD}'
+                            sh 'git config --global user.email "giangnguyen3246@gmail.com"'
+                            sh 'git config --global user.name "giangnt"'
                             sh 'git config --global user.password "${GIT_PASSWORD}"'
                             sh 'yarn lerna publish prerelease --preid=beta --ignore-scripts --exact --yes'
                         }
