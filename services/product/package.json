@@ -1,6 +1,6 @@
 {
   "name": "@fdgn/product-service",
-  "version": "1.0.1",
+  "version": "1.0.2-beta.0",
   "license": "MIT",
   "private": false,
   "scripts": {
@@ -12,6 +12,6 @@
   "dependencies": {
     "@faker-js/faker": "^8.4.1",
     "@fdgn/redis": "^1.1.0",
-    "@fdgn/share-domain": "^1.0.1"
+    "@fdgn/share-domain": "1.0.2-beta.0"
   }
 }
