@@ -1,6 +1,6 @@
 {
   "name": "@fdgn/share-domain",
-  "version": "1.0.2-beta.9",
+  "version": "1.0.2-beta.10",
   "license": "MIT",
   "main": "dist/index",
   "private": false,
