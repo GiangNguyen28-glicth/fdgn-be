@@ -24,8 +24,8 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'docker-hub-2', url: 'https://index.docker.io/v1/') {
-                        // sh 'yarn install'
-                        // sh 'yarn build'
+                        sh 'yarn install'
+                        sh 'yarn build'
                         sh 'git config --global user.email "giangnguyen3246@gmail.com"'
                         sh 'git config --global user.name "GiangNguyen28-glicth"'
                         sh 'yarn lerna publish prerelease --preid=beta --ignore-scripts --exact --yes'
