@@ -24,13 +24,13 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'docker-hub-2', url: 'https://index.docker.io/v1/') {
-                        withCredentials([usernamePassword(credentialsId: 'github', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
-                            echo 'git password ${GIT_PASSWORD}'
-                            // sh 'git config --global user.email "giangnguyen3246@gmail.com"'
-                            // sh 'git config --global user.name "giangnt"'
-                            // sh 'git config --global user.password "${GIT_PASSWORD}"'
-                            sh 'yarn lerna publish prerelease --preid=beta --ignore-scripts --exact --yes'
-                        }
+                        sh 'yarn lerna publish prerelease --preid=beta --ignore-scripts --exact --yes'
+                        // withCredentials([usernamePassword(credentialsId: 'github', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
+                        //     echo 'git password ${GIT_PASSWORD}'
+                        //     // sh 'git config --global user.email "giangnguyen3246@gmail.com"'
+                        //     // sh 'git config --global user.name "giangnt"'
+                        //     // sh 'git config --global user.password "${GIT_PASSWORD}"'
+                        // }
         
                         // sh 'yarn install'
                         // sh 'yarn build'
