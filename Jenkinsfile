@@ -16,7 +16,7 @@ pipeline {
     stages {
         stage('Cloning our Git') {
             steps {
-                git credentialsId: 'github', url: 'https://github.com/GiangNguyen28-glicth/fdgn-be.git'
+                git 'https://github.com/GiangNguyen28-glicth/fdgn-be.git'
             }
         }
         
