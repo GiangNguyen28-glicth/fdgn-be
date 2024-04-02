@@ -1,6 +1,6 @@
 {
   "name": "@fdgn/order-service",
-  "version": "1.0.2-beta.3",
+  "version": "1.0.2-beta.4",
   "license": "MIT",
   "private": false,
   "scripts": {
@@ -10,6 +10,6 @@
     "start": "node dist/main.js"
   },
   "dependencies": {
-    "@fdgn/share-domain": "1.0.2-beta.3"
+    "@fdgn/share-domain": "1.0.2-beta.4"
   }
 }
