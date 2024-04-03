@@ -20,5 +20,3 @@ RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - && \
     rm -rf /var/lib/apt/lists/*
 
 USER jenkins
-
-# docker run -d --name jenkins -p 8090:8080 -p 50000:50000 -v D:\jenkins:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -v C:\Users\diepn\AppData\Local\Yarn:/usr/local/yarn my-jenkins-image
