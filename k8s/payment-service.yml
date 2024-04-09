@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment-service
+spec:
+  selector:
+    matchLabels:
+      app: payment-service
+  template:
+    metadata:
+      labels:
+        app: payment-service
+    spec:
+      containers:
+      - name: payment-service
+        image: giangnguyen3246/fdgn-payment-service:1.0.2-beta.98
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 4018
+        env:
+        - name: MONGOOSE_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-auth
+              key: username
+        - name: MONGOOSE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-auth
+              key: password
+        - name: MONGOOSE_HOST
+          value: 'mongodb-service'
+        - name: MONGOOSE_URI
+          value: 'mongodb://localhost:30002/?authSource=admin'

@@ -19,16 +19,16 @@ spec:
           command:
           - mongod
           - --auth
-          - --bind_ip
-          - 0.0.0.0
+          # - --bind_ip
+          # - 0.0.0.0
           ports:
             - containerPort: 27017
               name: mongo
           volumeMounts:
             - name: mongodb-data
               mountPath: /data/db
-            - name: init-user
-              mountPath: /docker-entrypoint-initdb.d/mongo-init.js:ro
+            # - name: init-user
+            #   mountPath: /docker-entrypoint-initdb.d/mongo-init.js:ro
           env:
             - name: MONGO_INITDB_ROOT_USERNAME
               valueFrom:
@@ -40,10 +40,10 @@ spec:
                 secretKeyRef:
                   name: mongodb-auth
                   key: password
-      volumes:
-        - name: init-user
-          hostPath:
-            path: mongo-init.js
+      # volumes:
+      #   - name: init-user
+      #     hostPath:
+      #       path: mongo-init.js
   volumeClaimTemplates:
     - metadata:
         name: mongodb-data
@@ -57,7 +57,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mongodb
+  name: mongodb-service
 spec:
   selector:
     app: mongodb
