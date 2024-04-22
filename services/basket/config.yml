@@ -20,7 +20,12 @@ rabbit:
     minTimeout: 3000
     maxTimeout: 20000
 mongoose:
-  uri: mongodb://localhost:27017/microservice
+  username: guest
+  password: guest
+  uri: null
+  host: localhost
+  port: 27017
+  database: microservices
   
 redis:
   url: localhost
