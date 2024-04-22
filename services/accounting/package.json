@@ -1,0 +1,20 @@
+{
+  "name": "@fdgn/accounting-service",
+  "version": "1.0.2-beta.13",
+  "license": "MIT",
+  "main": "dist/index",
+  "types": "dist/index",
+  "private": false,
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rimraf -rf dist && nest build -p tsconfig.json",
+    "prepublishOnly": "yarn build",
+    "dev": "nest start --watch -p tsconfig.json",
+    "start": "node dist/main.js"
+  },
+  "dependencies": {
+    "@fdgn/share-domain": "1.0.2-beta.13"
+  }
+}

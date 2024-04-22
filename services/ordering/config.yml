@@ -1,0 +1,65 @@
+http:
+  host: 'localhost'
+  port: 4017
+  contextPath: order
+
+description: 'Order Service'
+
+rabbit:
+  protocol: amqp
+  hostname: localhost
+  username: guest
+  password: guest
+  port: 5672
+  heartbeat: 1
+  queue: 'localhost'
+  retry:
+    # forever: true
+    retries: 5
+    factor: 1
+    minTimeout: 3000
+    maxTimeout: 20000
+mongoose:
+  uri: mongodb://localhost:27017/microservice
+  
+redis:
+  url: localhost
+  password: null
+  socket:
+    port: 6379
+    connectTimeout: 60000
+  database: 1
+
+typeOrm:
+  type: postgres
+  host: localhost
+  username: giangnt
+  password: 'giangnt'
+  port: 5432
+  synchronize: true
+  autoLoadEntities: true
+  database: ordering
+  logging: true
+
+throttler:
+  - name: short
+    ttl: 1000
+    limit: 3
+  - name: medium
+    ttl: 10000
+    limit: 20
+  - name: long
+    ttl: 60000
+    limit: 100
+
+orderingConsume:
+  order:
+    queue: order_created
+    prefetchCount: 2
+    queueType: quorum
+    exchange: eca
+    routingKey: eca.order_created
+    deadLetterExchange: eca
+    deadLetterRoutingKey: eca.order_created
+    retryTime: 3000
+    maxRetries: 1

@@ -1,20 +1,14 @@
 import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { Resource, ResourceMongoProvider, ResourceSchema } from '@fdgn/share-domain';
+import { Resource, ResourceTypeOrmProvider } from '@fdgn/share-domain';
+import { RoleModule } from '../role';
 import { ResourceController } from './resource.controller';
 import { ResourceService } from './resource.service';
 
 @Module({
-  imports: [
-    MongooseModule.forFeature([
-      {
-        name: Resource.name,
-        schema: ResourceSchema,
-      },
-    ]),
-  ],
+  imports: [TypeOrmModule.forFeature([Resource]), RoleModule],
   controllers: [ResourceController],
-  providers: [ResourceMongoProvider, ResourceService],
+  providers: [ResourceTypeOrmProvider, ResourceService],
 })
 export class ResourceModule {}

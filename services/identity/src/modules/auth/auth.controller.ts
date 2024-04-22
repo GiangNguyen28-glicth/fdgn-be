@@ -1,13 +1,12 @@
-import { Controller, Post, Body, Get, UseGuards, Req } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { Request } from 'express';
 
 import { IResponse } from '@fdgn/common';
-import { User } from '@fdgn/share-domain';
+import { CurrentUser, User } from '@fdgn/share-domain';
 
+import { AtGuard, IToken } from '../../common';
 import { AuthService } from './auth.service';
 import { SignInDTO, SignUpDTO } from './dto';
-import { AtGuard, CurrentUser, IToken } from '../../common';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -16,9 +15,9 @@ export class AuthController {
 
   @Get('current-user')
   @UseGuards(AtGuard)
-  async currentUser(@CurrentUser() user: User): Promise<IResponse> {
+  async currentUser(@CurrentUser() user: User): Promise<User> {
     try {
-      return { success: true, data: user };
+      return user;
     } catch (error) {
       throw error;
     }

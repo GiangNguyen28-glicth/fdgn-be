@@ -1,24 +1,25 @@
 import { DBS_TYPE, ICrudRepo } from '@fdgn/common';
-import { MongoRepo } from '@fdgn/mongoose';
-import { InjectModel } from '@nestjs/mongoose';
+import { TypeOrmRepo } from '@fdgn/typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
-import { Resource, ResourceModel } from '../entities';
+import { Resource } from '../entities';
 
 export const RESOURCE_PROVIDER = {
-  MONGO_REPO: Resource.name.toUpperCase() + '_' + DBS_TYPE.MONGO,
+  TYPE_ORM_REPO: Resource.name.toUpperCase() + '_' + DBS_TYPE.TYPE_ORM,
 };
 
 export interface IResourceRepo extends ICrudRepo<Resource> {}
 
-export class ResourceMongoRepo extends MongoRepo<Resource> {
+export class ResourceTypeOrmRepo extends TypeOrmRepo<Resource> {
   constructor(
-    @InjectModel(Resource.name)
-    protected resourceRepo: ResourceModel,
+    @InjectRepository(Resource)
+    protected resourceRepo: Repository<Resource>,
   ) {
     super(resourceRepo);
   }
 }
-export const ResourceMongoProvider = {
-  provide: RESOURCE_PROVIDER.MONGO_REPO,
-  useClass: ResourceMongoRepo,
+export const ResourceTypeOrmProvider = {
+  provide: RESOURCE_PROVIDER.TYPE_ORM_REPO,
+  useClass: ResourceTypeOrmRepo,
 };

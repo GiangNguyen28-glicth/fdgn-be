@@ -1,24 +1,25 @@
 import { DBS_TYPE, ICrudRepo } from '@fdgn/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { MongoRepo } from '@fdgn/mongoose';
+import { TypeOrmRepo } from '@fdgn/typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
-import { Role, RoleModel } from '../entities';
+import { Role } from '../entities';
 
 export const ROLE_PROVIDER = {
-  MONGO_REPO: Role.name.toUpperCase() + '_' + DBS_TYPE.MONGO,
+  TYPE_ORM_REPO: Role.name.toUpperCase() + '_' + DBS_TYPE.TYPE_ORM,
 };
 
 export interface IRoleRepo extends ICrudRepo<Role> {}
 
-export class RoleMongoRepo extends MongoRepo<Role> {
+export class RoleTypeOrmRepo extends TypeOrmRepo<Role> {
   constructor(
-    @InjectModel(Role.name)
-    protected roleRepo: RoleModel,
+    @InjectRepository(Role)
+    protected roleRepo: Repository<Role>,
   ) {
     super(roleRepo);
   }
 }
-export const RoleMongoProvider = {
-  provide: ROLE_PROVIDER.MONGO_REPO,
-  useClass: RoleMongoRepo,
+export const RoleTypeOrmProvider = {
+  provide: ROLE_PROVIDER.TYPE_ORM_REPO,
+  useClass: RoleTypeOrmRepo,
 };

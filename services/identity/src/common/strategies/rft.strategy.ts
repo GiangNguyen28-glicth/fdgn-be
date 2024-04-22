@@ -3,6 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
 import { Request } from 'express';
 import { ExtractJwt, Strategy } from 'passport-jwt';
+import { UnauthorizedException } from '@nestjs/common';
 import { IAccessTokenPayload, IRefreshPayload } from '../interfaces';
 
 @Injectable()
@@ -15,11 +16,14 @@ export class RftStrategy extends PassportStrategy(Strategy, 'jwt-refresh') {
     });
   }
 
-  validate(req: Request, payload: IAccessTokenPayload): IRefreshPayload {
+  validate(req: Request | any, payload: IAccessTokenPayload): IRefreshPayload {
     try {
+      if (req) {
+        throw new UnauthorizedException('UnauthorizedException');
+      }
       const refreshToken = req.get('authorization').replace('Bearer', '').trim();
       return {
-        _id: payload._id,
+        id: payload.id,
         refreshToken,
       };
     } catch (error) {

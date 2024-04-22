@@ -1,20 +1,14 @@
 import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { Role, RoleMongoProvider, RoleSchema } from '@fdgn/share-domain';
+import { Role, RoleTypeOrmProvider } from '@fdgn/share-domain';
 import { RoleController } from './role.controller';
 import { RoleService } from './role.service';
 
 @Module({
-  imports: [
-    MongooseModule.forFeature([
-      {
-        name: Role.name,
-        schema: RoleSchema,
-      },
-    ]),
-  ],
+  imports: [TypeOrmModule.forFeature([Role])],
   controllers: [RoleController],
-  providers: [RoleMongoProvider, RoleService],
+  providers: [RoleTypeOrmProvider, RoleService],
+  exports: [RoleService]
 })
 export class RoleModule {}

@@ -4,10 +4,12 @@ import { JwtService } from '@nestjs/jwt';
 
 import { ProducerMode, RabbitMQProducer } from '@fdgn/rabbitmq';
 import { IResponse, hash, throwIfNotExists, compareHash } from '@fdgn/common';
+import { RoleType } from '@fdgn/share-domain';
 
 import { AuthConfig, IAccessTokenPayload, IToken } from '../../common';
 import { UserService } from '../user';
 import { SignInDTO, SignUpDTO } from './dto';
+import { RoleService } from '../role';
 
 @Injectable()
 export class AuthService implements OnModuleInit {
@@ -17,6 +19,7 @@ export class AuthService implements OnModuleInit {
     private jwtService: JwtService,
     private configService: ConfigService,
     private userService: UserService,
+    private roleService: RoleService,
   ) {
     this.config = new AuthConfig(this.configService.get<AuthConfig>('authConfig') as any);
   }
@@ -31,7 +34,8 @@ export class AuthService implements OnModuleInit {
         throw new BadRequestException('Password not match with confirm password');
       }
       const password = await hash(dto.password);
-      const user = await this.userService.create({ password, email: dto.email });
+      const role = await this.roleService.findOne({ name: RoleType.USER });
+      const user = await this.userService.create({ password, email: dto.email, roles: [role] });
       if (user) {
         await this.mailProducer.publish([
           {
@@ -46,6 +50,7 @@ export class AuthService implements OnModuleInit {
         message: 'Check mail to validate your account!',
       };
     } catch (error) {
+      console.log(error);
       throw error;
     }
   }
@@ -59,7 +64,7 @@ export class AuthService implements OnModuleInit {
       if (!isCorrectPw) {
         throw new BadRequestException('Password not correct !');
       }
-      return await this.generateTokens({ _id: user._id });
+      return await this.generateTokens({ id: user.id });
     } catch (error) {
       console.log(error);
       throw error;

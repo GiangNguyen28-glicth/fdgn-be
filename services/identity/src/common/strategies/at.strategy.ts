@@ -19,7 +19,7 @@ export class AtStrategy extends PassportStrategy(Strategy, 'jwt') {
   }
   async validate(payload: IAccessTokenPayload): Promise<User> {
     try {
-      const user = await this.userService.findOne({ _id: payload._id });
+      const user = await this.userService.findOne({ id: payload.id });
       if (!user) {
         throw new UnauthorizedException('jwt not accepted');
       }

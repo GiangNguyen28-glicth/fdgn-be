@@ -19,7 +19,7 @@ rabbit:
     minTimeout: 3000
     maxTimeout: 20000
 mongoose:
-  uri: mongodb://localhost:27017/microservice
+  uri: mongodb://localhost:27017/notification
   
 redis:
   host: localhost
@@ -52,5 +52,17 @@ mailConsume:
     routingKey: notification_send_mail
     deadLetterExchange: notification
     deadLetterRoutingKey: notification_send_mail.errors
+    retryTime: 3000
+    maxRetries: 1
+
+orderConsume:
+  orderProcessing:
+    queue: order_processing
+    prefetchCount: 2
+    queueType: quorum
+    exchange: eca
+    routingKey: eca.order_processing
+    deadLetterExchange: eca
+    deadLetterRoutingKey: eca.order_processing.errors
     retryTime: 3000
     maxRetries: 1

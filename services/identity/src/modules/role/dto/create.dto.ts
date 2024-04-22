@@ -1,16 +1,13 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsNotEmpty } from '@fdgn/common';
 
-import { Grant, Role } from '@fdgn/share-domain';
+import { Role, RoleType } from '@fdgn/share-domain';
 
 export class CreateRoleDTO implements Partial<Role> {
-  @ApiProperty()
+  @ApiPropertyOptional({ type: 'enum', enum: RoleType })
   @IsNotEmpty()
-  name?: string;
+  name: RoleType;
 
   @ApiPropertyOptional()
   description?: string;
-
-  @ApiPropertyOptional()
-  grants?: Grant[];
 }

@@ -3,3 +3,7 @@ export * from './product.repositories';
 export * from './user.repositories';
 export * from './role.repositories';
 export * from './resource.repositories';
+export * from './order.repositories';
+export * from './order-item.repositories';
+export * from './shop.repositories';
+export * from './notification.repositories';

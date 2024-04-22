@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { IResponse } from '@fdgn/common';
 import { Role } from '@fdgn/share-domain';
@@ -9,6 +9,11 @@ import { CreateRoleDTO } from './dto';
 @Controller('role')
 export class RoleController {
   constructor(private roleService: RoleService) {}
+
+  // @Get()
+  // async findAll(): Promise<IResponse> {
+  //   return await this.roleService.findAll();
+  // }
 
   @Post()
   async create(@Body() dto: CreateRoleDTO): Promise<IResponse> {

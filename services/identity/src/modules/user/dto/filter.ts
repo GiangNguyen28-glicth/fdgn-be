@@ -7,6 +7,6 @@ export class FilterGetAllUser extends FilterGetAll implements Partial<User> {
 }
 
 export class FilterGetOneUser implements Partial<User> {
-  _id?: string;
+  id?: number;
   email?: string;
 }

@@ -21,14 +21,14 @@ rabbit:
     maxTimeout: 20000
 
 typeOrm:
-  type: mysql
+  type: postgres
   host: localhost
-  username: root
-  password: '123456'
-  port: 3306
+  username: giangnt
+  password: 'giangnt'
+  port: 5432
   synchronize: true
   autoLoadEntities: true
-  database: eca_crawler
+  database: identity
   logging: true
   
 redis:
@@ -36,9 +36,6 @@ redis:
   port: 6379
   password: null
   db: 1
-
-mongoose:
-  uri: mongodb://localhost:27017/microservice
 
 throttler:
   - name: short

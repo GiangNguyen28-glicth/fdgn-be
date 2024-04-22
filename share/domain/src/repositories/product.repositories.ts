@@ -1,4 +1,5 @@
 import { InjectModel } from '@nestjs/mongoose';
+import { Connection } from 'mongoose';
 
 import { MongoRepo } from '@fdgn/mongoose';
 import { ICrudRepo, DBS_TYPE } from '@fdgn/common';

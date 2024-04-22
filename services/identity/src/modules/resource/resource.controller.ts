@@ -1,7 +1,7 @@
-import { Controller, Body, Post } from '@nestjs/common';
+import { Controller, Body, Post, Get, UseGuards } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { IResponse } from '@fdgn/common';
-import { Resource } from '@fdgn/share-domain';
+import { Permission, Resource, RolesGuard, hasResource, hasRoles, RoleType } from '@fdgn/share-domain';
 
 import { ResourceService } from './resource.service';
 import { CreateResourceDTO } from './dto';
@@ -11,6 +11,14 @@ import { CreateResourceDTO } from './dto';
 export class ResourceController {
   constructor(private resourceService: ResourceService) {}
 
+  @Get()
+  @hasRoles([RoleType.ADMIN])
+  @hasResource([Permission.READ_ANY])
+  @UseGuards(RolesGuard)
+  async findAll(): Promise<any> {
+    return await this.resourceService.findAll();
+  }
+  
   @Post()
   async create(@Body() dto: CreateResourceDTO): Promise<IResponse> {
     return await this.resourceService.create(dto);

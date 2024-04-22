@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+
 import { RabbitConsumer } from '@fdgn/rabbitmq';
+
 import { ISendMail } from './interfaces';
 import { MailService } from './mail.service';
 

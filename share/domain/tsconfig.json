@@ -3,11 +3,7 @@
   "compilerOptions": {
     "experimentalDecorators": true,
     "outDir": "./dist",
-    "strictNullChecks": true,
-    "paths": {
-      "@domain/": ["share/domain/src/"],
-      "@domain/*": ["share/domain/src/*"]
-    }
+    "strictNullChecks": true
   },
   "include": ["src/**/*"]
 }
