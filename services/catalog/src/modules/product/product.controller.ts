@@ -9,14 +9,14 @@ import { FilterGetAllProduct } from './dto';
 export class ProductController {
   constructor(private productService: ProductService) {}
 
-  @Get('dump-data')
-  async dumpData(): Promise<string> {
-    return await this.productService.dumData();
-  }
-
   @Get()
   async findAll(@Query() filtersQuery: FilterGetAllProduct): Promise<any> {
     return await this.productService.findAll(filtersQuery);
+  }
+
+  @Get('dump-data')
+  async dumpData(): Promise<string> {
+    return await this.productService.dumData();
   }
 
   @Get(':id')

@@ -53,7 +53,7 @@ throttler:
     limit: 100
 
 orderingConsume:
-  order:
+  orderProcessing:
     queue: order_created
     prefetchCount: 2
     queueType: quorum

@@ -4,10 +4,19 @@ import { IEntity, Transform, MongoID } from '@fdgn/common';
 
 export type CateModel = Model<Category>;
 
-@Schema({ timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }, id: true })
+@Schema({
+  timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
+  methods: {
+    transform(doc, ret) {
+      ret.id = ret._id;
+      return ret;
+    },
+  },
+})
 export class Category implements IEntity {
   @Transform(({ value }) => value.toString())
-  _id: string;
+  @Prop({ name: '_id' })
+  id: string;
 
   @Prop({ trim: true })
   name: string;

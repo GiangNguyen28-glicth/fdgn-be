@@ -412,26 +412,18 @@
   resolved "https://registry.yarnpkg.com/@faker-js/faker/-/faker-8.4.1.tgz#5d5e8aee8fce48f5e189bf730ebd1f758f491451"
   integrity sha512-XQ3cU+Q8Uqmrbf2e0cIC/QN43sTBSC8KF12u29Mb47tWrt2hAgBXSgpZMj4Ao8Uk0iJcU99QsOCaIL8934obCg==
 
-"@fdgn/client-core@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@fdgn/client-core/-/client-core-1.1.0.tgz#6e0e9afe7ad014066468b9781e11e5fca91e9f87"
-  integrity sha512-d7lNgtoARep7tGfmZxlU3tC+rA5exoldSZjJUYx64oSwgV/HCcc6ndyZOKVDsQ/XdRAPPXobxgl8yqhBWcV7Xw==
+"@fdgn/client-core@^1.1.10":
+  version "1.1.10"
+  resolved "https://registry.yarnpkg.com/@fdgn/client-core/-/client-core-1.1.10.tgz#948ad0635473dc74b380ea4d361e236bd2aa293a"
+  integrity sha512-gSfiHMmbHeLMgJbjFrhYPX/oDDgfAzceQX6MdxfG4GB3n23cEmufj5VnVvelK5tlAZvczLtGBPK8I3vnFYQU8w==
   dependencies:
-    "@fdgn/common" "^1.1.0"
+    "@fdgn/common" "^1.1.10"
     source-map-support "^0.5.21"
 
-"@fdgn/client-core@^1.1.9":
-  version "1.1.9"
-  resolved "https://registry.yarnpkg.com/@fdgn/client-core/-/client-core-1.1.9.tgz#9aae9e9a07c125048e94cdcd4b22f4cbe872c3fc"
-  integrity sha512-nsbM12gG3A4QlkavYYw1P1k5MJWIeR+iLbusXGs9EmgUzHJDKKkgVV/pia3xzY0clcqd6PPu4aPpvAsXMUJnGg==
-  dependencies:
-    "@fdgn/common" "^1.1.9"
-    source-map-support "^0.5.21"
-
-"@fdgn/common@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@fdgn/common/-/common-1.1.0.tgz#87b5865491f0eccec058cdfce5e696669a3b8abb"
-  integrity sha512-Tdf+Dqrmk4VGzbyX834d4VLOPqex0qdZfpIgcKj5lXmW5Hd9++mPQpElitbOgNBEj261daHDKCBjKVlCclBkZQ==
+"@fdgn/common@^1.1.10":
+  version "1.1.10"
+  resolved "https://registry.yarnpkg.com/@fdgn/common/-/common-1.1.10.tgz#d3eba9185d7e4b0a2844dcb7831f170af40d4ac8"
+  integrity sha512-DqOXtIimPCJUuNkOLH7ok6meW+3ZfMzFEutaFzfx4EkErBIN6NXUWIUMewN4YCecSKjw+bHA5xJ3GAtkkyBkmQ==
   dependencies:
     "@nestjs/common" "^10.3.0"
     "@nestjs/config" "^3.1.2"
@@ -444,10 +436,10 @@
     pino-pretty "^10.3.1"
     source-map-support "^0.5.21"
 
-"@fdgn/common@^1.1.9":
-  version "1.1.9"
-  resolved "https://registry.yarnpkg.com/@fdgn/common/-/common-1.1.9.tgz#a61b58b6eb35bef998b2ac3486f928000c39ad11"
-  integrity sha512-wqr1BLlfaDtDCTpEuqgwpNoJjQqmq14zQ2075IU9a+FRWVrCvlTtt85mL1vA3qrgVx8b9QePgBFFZGPltZbZXA==
+"@fdgn/common@^1.1.12":
+  version "1.1.12"
+  resolved "https://registry.yarnpkg.com/@fdgn/common/-/common-1.1.12.tgz#0611e225dad3ac0d88299f7200ee3d8b7f638987"
+  integrity sha512-O6v/3UkvrUY0466hZiTSBFmKv5KhDSOnT7RhMTIGW7XINRxIcsBgzkgk043MASsAa57/t3HQ4k04xFklSpIW+A==
   dependencies:
     "@nestjs/common" "^10.3.0"
     "@nestjs/config" "^3.1.2"
@@ -460,12 +452,12 @@
     pino-pretty "^10.3.1"
     source-map-support "^0.5.21"
 
-"@fdgn/core@^1.1.9":
-  version "1.1.9"
-  resolved "https://registry.yarnpkg.com/@fdgn/core/-/core-1.1.9.tgz#7282eda29bc72d930f07f315d8b7f9d3ba0da67e"
-  integrity sha512-iMyAo0y/PvifcZ9X9qsP+mpBm9Coo/9BgDtdkz+C9e/HhD+aBOhf1bvJAFmOQ0qJOPERhD4nCPyhvzgKcaspHQ==
+"@fdgn/core@^1.1.10":
+  version "1.1.10"
+  resolved "https://registry.yarnpkg.com/@fdgn/core/-/core-1.1.10.tgz#b2a490abb85df38c0a052bc9e3c7a89a3ea41fa8"
+  integrity sha512-43Hh5ETmhycyaBA2cM7wD2LdcJa8NIFPB+X3TgNp/FGEz+ARkGA6VM2s3E6K4m7MrQlIpeUdYtZvAPw66hR9dA==
   dependencies:
-    "@fdgn/common" "^1.1.9"
+    "@fdgn/common" "^1.1.10"
     "@nestjs/core" "^10.3.0"
     "@nestjs/microservices" "^10.3.0"
     "@nestjs/platform-express" "^10.3.0"
@@ -479,42 +471,42 @@
     reflect-metadata "^0.2.1"
     rxjs "^7.2.0"
 
-"@fdgn/mongoose@^1.1.11":
-  version "1.1.11"
-  resolved "https://registry.yarnpkg.com/@fdgn/mongoose/-/mongoose-1.1.11.tgz#c5b5a5bfe9df7861206ab20f0903508e1fd913a0"
-  integrity sha512-m+MbdzSlpBkN9AdiGLX/2kqvkU7vWZNGAxwDOf+40iMoRiovecSelQMvZU2URmQ8SAjUhk9Qoy3UeK9tuikRaA==
+"@fdgn/mongoose@^1.1.12":
+  version "1.1.12"
+  resolved "https://registry.yarnpkg.com/@fdgn/mongoose/-/mongoose-1.1.12.tgz#d07c35563b21ba23e999cae967fe2b62d9e41819"
+  integrity sha512-4MVevl2rWy/3Asit1Tx9HA7KkvP+moUwqh13Qg8SKfMoMO4UVrgCpKDGjYp9GeV8jdEN4aVNzOoMvOZxtkKhyg==
   dependencies:
-    "@fdgn/common" "^1.1.9"
+    "@fdgn/common" "^1.1.10"
     "@nestjs/mongoose" "^10.0.2"
     mongoose "7.3.4"
 
-"@fdgn/rabbitmq@^1.1.11":
-  version "1.1.11"
-  resolved "https://registry.yarnpkg.com/@fdgn/rabbitmq/-/rabbitmq-1.1.11.tgz#4976c3a56d27c042b92e9bda0171fd032928bb36"
-  integrity sha512-VYwdFSCDgA1HkKksWKNty+SusmmlLA16K+R6xEPsc5kwljxUUcoVsp9IyxuXuHboC7k91mfLKkvlFMC89f9VQQ==
+"@fdgn/rabbitmq@^1.1.12":
+  version "1.1.12"
+  resolved "https://registry.yarnpkg.com/@fdgn/rabbitmq/-/rabbitmq-1.1.12.tgz#9417e3536ee3022bfb09f76a2fd55afd630053b6"
+  integrity sha512-KF+phexsqMD+bZZmXcazsMc5i6t8IypjuxNoJHFQS8+pkGDK6x52pWSu+meXH6suEtPokHB4Bt3mDMcxGnd+gg==
   dependencies:
-    "@fdgn/client-core" "^1.1.9"
-    "@fdgn/common" "^1.1.9"
+    "@fdgn/client-core" "^1.1.10"
+    "@fdgn/common" "^1.1.10"
     amqp-connection-manager "^4.1.14"
     amqplib "^0.10.3"
 
-"@fdgn/redis@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@fdgn/redis/-/redis-1.1.0.tgz#85eccd09d3b4e16effdc97b9ebc3d4d2813131f6"
-  integrity sha512-AiQrEmnvzi57nnfgDgvgMUXYZla3O56biYHdT8MeTEP0pQfPV412cudB7/zlbjMZsQoadMeLTsZK6YzQIRg3jw==
+"@fdgn/redis@^1.1.10":
+  version "1.1.10"
+  resolved "https://registry.yarnpkg.com/@fdgn/redis/-/redis-1.1.10.tgz#39d728d80ef148a1cf326162b23a65c3c25a27c5"
+  integrity sha512-vwDGd8bxvLQChGXSL4WI7/GFMnVsZ2Vmxxyd2J9jJ38EII6q0IIVd/RCW2R1KgZAssaipSXUZUR5/i130NuIlA==
   dependencies:
-    "@fdgn/client-core" "^1.1.0"
-    "@fdgn/common" "^1.1.0"
+    "@fdgn/client-core" "^1.1.10"
+    "@fdgn/common" "^1.1.10"
     generic-pool "^3.9.0"
     redis "^4.6.12"
 
-"@fdgn/typeorm@^1.1.11":
-  version "1.1.11"
-  resolved "https://registry.yarnpkg.com/@fdgn/typeorm/-/typeorm-1.1.11.tgz#4bce34b57aeb286d3c4e3d14e9ef0026846a04ba"
-  integrity sha512-tnOuLe5sozY9NkycZJZ3FbUOdHvWXi9c6/kqaK2Yi32e1Rkaguc7zL+PY6Lnjej0b7YIJbPrJWdzEmbVNBwHtQ==
+"@fdgn/typeorm@^1.1.12":
+  version "1.1.12"
+  resolved "https://registry.yarnpkg.com/@fdgn/typeorm/-/typeorm-1.1.12.tgz#aa9df6d3845d4f4ecfbb22bfe1dc6fb55bae5725"
+  integrity sha512-RT5YGOfHZ39nXJcn1SEh5m0fTBeSvuBWtJcXpOI5OZol/uI0jEh28E9pyCMDvc3XOvkBWfH8vFjZXNLQSJX+Sw==
   dependencies:
-    "@fdgn/client-core" "^1.1.9"
-    "@fdgn/common" "^1.1.9"
+    "@fdgn/client-core" "^1.1.10"
+    "@fdgn/common" "^1.1.10"
     "@nestjs/typeorm" "^10.0.1"
     mysql2 "^3.7.0"
     pg "^8.11.5"
@@ -1673,6 +1665,11 @@
   integrity sha512-VRLSGzik+Unrup6BsouBeHsf4d1hOEgYWTm/7Nmw1sXoN1+tRly/Gy/po3yeahnP4jfnQWWAhQAqcNfH7ngOkA==
   dependencies:
     "@types/node" "*"
+
+"@types/lodash@^4.14.180":
+  version "4.17.0"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.17.0.tgz#d774355e41f372d5350a4d0714abb48194a489c3"
+  integrity sha512-t7dhREVv6dbNj0q17X12j7yDG4bD/DHYX7o5/DbDxobP0HnGPgpRz2Ej77aL7TZT3DSw13fqUTj8J4mMnqa7WA==
 
 "@types/methods@^1.1.4":
   version "1.1.4"

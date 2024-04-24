@@ -14,13 +14,16 @@
     "dep:upgrade": "ncu -p yarn -f /^@ynm*/ -u"
   },
   "dependencies": {
-    "@fdgn/common": "^1.1.9",
-    "@fdgn/core": "^1.1.9",
-    "@fdgn/mongoose": "^1.1.11",
-    "@fdgn/rabbitmq": "^1.1.11",
-    "@fdgn/typeorm": "^1.1.11",
+    "@fdgn/common": "^1.1.12",
+    "@fdgn/core": "^1.1.10",
+    "@fdgn/mongoose": "^1.1.12",
+    "@fdgn/rabbitmq": "^1.1.12",
+    "@fdgn/typeorm": "^1.1.12",
     "axios": "^1.6.8",
     "body-parser": "^1.20.2",
     "compression": "^1.7.4"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.180"
   }
 }

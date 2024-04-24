@@ -26,7 +26,7 @@ mongoose:
   host: localhost
   port: 27017
   database: microservices
-  
+
 redis:
   url: localhost
   password: null
@@ -45,3 +45,8 @@ throttler:
   - name: long
     ttl: 60000
     limit: 100
+
+producer:
+  orderProcessing:
+    exchange: eca
+    routingKey: eca.order_created

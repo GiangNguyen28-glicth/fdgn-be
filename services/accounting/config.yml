@@ -1,9 +1,9 @@
 http:
   host: 'localhost'
-  port: 4018,
+  port: 4018
   contextPath: accounting
 
-description: 'Account Service'
+description: 'Accounting Service'
 
 rabbit:
   protocol: amqp
@@ -20,12 +20,7 @@ rabbit:
     minTimeout: 3000
     maxTimeout: 20000
 mongoose:
-  username: guest
-  password: guest
-  uri: null
-  host: localhost
-  port: 27017
-  database: microservices
+  uri: mongodb://localhost:27017/accounting
   
 redis:
   host: localhost
@@ -43,3 +38,15 @@ throttler:
   - name: long
     ttl: 60000
     limit: 100
+
+accountingConsume:
+  paymentProcessing:
+    queue: payment_processing
+    prefetchCount: 2
+    queueType: quorum
+    exchange: eca
+    routingKey: eca.payment_processing
+    deadLetterExchange: eca
+    deadLetterRoutingKey: eca.payment_processing.errors
+    retryTime: 3000
+    maxRetries: 1

@@ -2,32 +2,34 @@ import { IEntity, Transform } from '@fdgn/common';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
-export type NotificationModel = Model<Notification>;
+export type BillingModel = Model<Billing>;
 
 @Schema({
   timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
-  methods: {
-    transform(doc, ret) {
+  toJSON: {
+    transform: (doc, ret) => {
+      delete ret.__v;
       ret.id = ret._id;
+      delete ret._id;
     },
   },
 })
-export class Notification implements IEntity {
+export class Billing implements IEntity {
   @Transform(({ value }) => value.toString())
   @Prop({ name: '_id' })
   id: string;
 
-  @Prop({ trim: true })
-  name: string;
+  @Prop()
+  order_id: number;
 
   @Prop()
   user_id: number;
 
   @Prop()
-  deleted_at?: Date;
+  total_price: number;
 
   created_at?: Date;
   updated_at?: Date;
 }
 
-export const NotificationSchema = SchemaFactory.createForClass(Notification);
+export const BillingSchema = SchemaFactory.createForClass(Billing);

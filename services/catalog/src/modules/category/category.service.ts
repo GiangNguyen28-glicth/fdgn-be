@@ -12,11 +12,11 @@ export class CategoryService {
 
   async create(dto: CreateCategoryDTO): Promise<IResponse> {
     try {
-      const category = await this.cateRepo.insert(dto);
-      await this.cateRepo.save(category);
+      const category = await this.cateRepo.insert({ entity: dto });
+      await this.cateRepo.save({ entity: category });
       return {
         success: true,
-        message: category._id,
+        message: category.id,
       };
     } catch (error) {
       console.log(error);

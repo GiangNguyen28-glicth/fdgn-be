@@ -3,9 +3,9 @@ import { ConfigService } from '@nestjs/config';
 import { RabbitConsumer } from '@fdgn/rabbitmq';
 
 @Injectable()
-export class OrderCreatedConsumer extends RabbitConsumer<any> {
+export class PaymentConsumer extends RabbitConsumer<any> {
   constructor(protected configService: ConfigService) {
-    super(OrderCreatedConsumer.name, configService.get('orderingConsume.orderProcessing') as any);
+    super(PaymentConsumer.name, configService.get('accountingConsume.paymentProcessing') as any);
   }
 
   async process(sources: any): Promise<void> {

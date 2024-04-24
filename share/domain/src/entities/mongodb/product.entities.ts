@@ -62,10 +62,12 @@ export class ProductOption {
   values: string[];
 }
 
-@Schema({ timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } })
+@Schema({
+  timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
+})
 export class Product extends ProductBase implements IEntity {
   @Transform(({ value }) => value.toString())
-  _id?: string;
+  _id: string;
 
   @Prop({ trim: true, required: true })
   title: string;
@@ -96,3 +98,6 @@ export class Product extends ProductBase implements IEntity {
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);
+ProductSchema.virtual('id').get(function () {
+  return this._id;
+});

@@ -24,14 +24,14 @@ export class ProductService {
     return await this.productRepo.findOne({ filters });
   }
 
-  async findAll(filtersQuery: FilterGetAllProduct): Promise<any> {
+  async findAll(filters_query: FilterGetAllProduct): Promise<any> {
     const { filters } = new FilterBuilder<Product>()
       .getInstance(dbsType)
-      .setFilterItem('shop_id', '$eq', filtersQuery?.shop_id)
+      .setFilterItem('shop_id', '$eq', filters_query?.shop_id)
       .buildQuery();
     return await this.productRepo.findAll({
       filters,
-      pagination: { page: filtersQuery?.page, size: filtersQuery?.size },
+      pagination: { page: filters_query?.page, size: filters_query?.size },
     });
   }
 
@@ -50,10 +50,10 @@ export class ProductService {
         slug: keyword.replace(/ /g, '-'),
         status: PRODUCT_STATUS.ACTIVE,
         shop_id: random(1, 100),
-      };
+      } as any;
     };
     const products: Product[] = faker.helpers.multiple(createRandomProduct, {
-      count: 1000000,
+      count: 10,
     });
     console.log('Da xong');
     while (products.length) {
