@@ -1,5 +1,5 @@
 import { Controller } from '@nestjs/common';
-import { Notification } from '@fdgn/share-domain';
+import { Notification } from '@fdgn/share-ecm';
 import { NotificationService } from './notification.service';
 
 @Controller(Notification.name.toLowerCase())

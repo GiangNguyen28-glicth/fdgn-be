@@ -1,5 +1,5 @@
 import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
-import { AuthMiddleware } from '@fdgn/share-domain';
+import { AuthMiddleware } from '@fdgn/share-ecm';
 
 import { CartController } from './cart.controller';
 import { CartService } from './cart.service';

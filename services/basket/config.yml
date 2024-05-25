@@ -46,7 +46,18 @@ throttler:
     ttl: 60000
     limit: 100
 
-producer:
-  orderProcessing:
+basketProducer:
+  orderCreated:
     exchange: eca
     routingKey: eca.order_created
+
+basketConsume:
+  cartDeleted:
+    queue: cart_deleted
+    queueType: quorum
+    exchange: eca
+    routingKey: eca.cart_deleted
+    deadLetterExchange: eca
+    deadLetterRoutingKey: eca.cart_deleted
+    retryTime: 3000
+    maxRetries: 1

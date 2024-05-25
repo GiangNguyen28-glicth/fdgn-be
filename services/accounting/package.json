@@ -4,7 +4,6 @@
   "license": "MIT",
   "main": "dist/index",
   "types": "dist/index",
-  "private": false,
   "files": [
     "dist"
   ],
@@ -15,6 +14,7 @@
     "start": "node dist/main.js"
   },
   "dependencies": {
-    "@fdgn/share-domain": "1.0.2-beta.13"
+    "@fdgn/share-ecm": "1.0.2-beta.13",
+    "stripe": "^15.5.0"
   }
 }

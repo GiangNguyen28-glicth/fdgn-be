@@ -1,14 +1,36 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { CommonModule, LogModule } from '@fdgn/common';
-import { TypeOrmSQLModule } from '@fdgn/typeorm';
 import { RabbitMQModule } from '@fdgn/rabbitmq';
+import { TypeOrmSQLModule } from '@fdgn/typeorm';
 
+import { CqrsModule } from '@nestjs/cqrs';
+import {
+  CommandHandlers,
+  DomainEventHandlers,
+  IntegrationEventHandlers,
+  OrderingIntegrationEventProvider
+} from './app';
 import { AppController } from './app.controller';
-import { OrderItemModule, OrderModule } from './modules';
+import { Entities, RepoProvider } from './infra';
 
 @Module({
-  imports: [CommonModule, LogModule, TypeOrmSQLModule, RabbitMQModule, OrderModule, OrderItemModule],
+  imports: [
+    CommonModule,
+    CqrsModule,
+    LogModule,
+    TypeOrmSQLModule,
+    RabbitMQModule,
+    TypeOrmModule.forFeature([...Entities]),
+  ],
   controllers: [AppController],
+  providers: [
+    ...RepoProvider,
+    ...CommandHandlers,
+    ...DomainEventHandlers,
+    ...IntegrationEventHandlers,
+    OrderingIntegrationEventProvider,
+  ],
 })
 export class AppModule {}

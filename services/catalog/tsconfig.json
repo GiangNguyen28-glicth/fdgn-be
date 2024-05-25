@@ -3,11 +3,7 @@
   "compilerOptions": {
     "experimentalDecorators": true,
     "outDir": "./dist",
-    "strictNullChecks": true,
-    "paths": {
-      "@product/": ["services/product/src/"],
-      "@product/*": ["services/product/src/*"]
-    }
+    "strictNullChecks": true
   },
   "include": ["src/**/*"]
 }

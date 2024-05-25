@@ -2,7 +2,7 @@ import { Controller, Post, Body, Get, UseInterceptors, ClassSerializerIntercepto
 import { ApiTags } from '@nestjs/swagger';
 
 import { IResponse } from '@fdgn/common';
-import { CurrentUser, User } from '@fdgn/share-domain';
+import { CurrentUser, IUser } from '@fdgn/share-ecm';
 
 import { CheckOutDTO, CreateItemToCartDTO } from './dto';
 import { CartService } from './cart.service';
@@ -13,18 +13,17 @@ export class CartController {
   constructor(private cartService: CartService) {}
 
   @Get()
-  async getCartItems(@CurrentUser() user: User) {
+  async getCartItems(@CurrentUser() user: IUser) {
     return await this.cartService.getCartItems(user);
   }
 
   @Post()
-  async addToCart(@Body() dto: CreateItemToCartDTO, @CurrentUser() user: User): Promise<IResponse> {
+  async addToCart(@Body() dto: CreateItemToCartDTO, @CurrentUser() user: IUser): Promise<IResponse> {
     return await this.cartService.addToCart(dto, user);
   }
 
   @Post('checkout')
-  @UseInterceptors(ClassSerializerInterceptor)
-  async checkout(@Body() dto: CheckOutDTO, @CurrentUser() user: User): Promise<IResponse> {
+  async checkout(@Body() dto: CheckOutDTO, @CurrentUser() user: IUser): Promise<IResponse> {
     return await this.cartService.checkout(dto, user);
   }
 }

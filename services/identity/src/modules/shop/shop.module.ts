@@ -1,14 +1,16 @@
-import { Shop, ShopTypeOrmProvider } from '@fdgn/share-domain';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ShopService } from './shop.service';
-import { ShopController } from './shop.controller';
-import { UserModule } from '../user';
+
+
+import { ShopEntity, ShopRepoProvider } from '../../infra';
 import { RoleModule } from '../role';
+import { UserModule } from '../user';
+import { ShopController } from './shop.controller';
+import { ShopService } from './shop.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Shop]), UserModule, RoleModule],
+  imports: [TypeOrmModule.forFeature([ShopEntity]), UserModule, RoleModule],
   controllers: [ShopController],
-  providers: [ShopTypeOrmProvider, ShopService],
+  providers: [ShopRepoProvider, ShopService],
 })
 export class ShopModule {}

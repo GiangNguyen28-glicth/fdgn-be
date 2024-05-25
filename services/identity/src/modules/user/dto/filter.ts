@@ -1,12 +1,12 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { FilterGetAll } from '@fdgn/common';
-import { User } from '@fdgn/share-domain';
-export class FilterGetAllUser extends FilterGetAll implements Partial<User> {
+import { IUser } from '@fdgn/share-ecm';
+export class FilterGetAllUser extends FilterGetAll implements Partial<IUser> {
   @ApiPropertyOptional()
   name?: string;
 }
 
-export class FilterGetOneUser implements Partial<User> {
+export class FilterGetOneUser implements Partial<IUser> {
   id?: number;
   email?: string;
 }

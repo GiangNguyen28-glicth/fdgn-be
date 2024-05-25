@@ -1,34 +1,28 @@
-import { Injectable, Inject } from '@nestjs/common';
-import { QueryRunner } from 'typeorm';
+import { Inject, Injectable } from '@nestjs/common';
 
-import {
-  IResult,
-  formatResult,
-  IResponse,
-  FilterBuilder,
-  DBS_TYPE,
-  throwIfNotExists,
-  IUpdateOptions,
-} from '@fdgn/common';
-import { IUserRepo, RoleType, USER_PROVIDER, User } from '@fdgn/share-domain';
+import { IResult, IUpdateOptions, formatResult, throwIfNotExists } from '@fdgn/common';
+import { IUser, RoleType } from '@fdgn/share-ecm';
+import { FilterTypeOrmBuilder } from '@fdgn/typeorm';
+
+import { REPO } from '../../common/constance';
+import { IUserRepo } from '../../domain';
 import { CreateUserDTO, FilterGetAllUser, FilterGetOneUser } from './dto';
-const dbsType: DBS_TYPE = DBS_TYPE.TYPE_ORM;
+import { UserEntity } from '../../infra';
 @Injectable()
 export class UserService {
-  constructor(@Inject(USER_PROVIDER.TYPE_ORM_REPO) private userRepo: IUserRepo) {}
+  constructor(@Inject(REPO.USER) private userRepo: IUserRepo) {}
 
-  async create(dto: CreateUserDTO): Promise<User> {
+  async create(dto: CreateUserDTO): Promise<UserEntity> {
     try {
       const user = await this.userRepo.insert({ entity: dto });
       await this.userRepo.save({ entity: dto });
       return user;
     } catch (error) {
-      console.log(error);
       throw error;
     }
   }
 
-  async findAll(filter: FilterGetAllUser): Promise<IResult<User>> {
+  async findAll(filter: FilterGetAllUser): Promise<IResult<UserEntity>> {
     try {
       const [results, totalCount] = await Promise.all([this.userRepo.findAll(), this.userRepo.count()]);
       return formatResult(results, totalCount);
@@ -37,22 +31,20 @@ export class UserService {
     }
   }
 
-  async findOne(filtersQuery: FilterGetOneUser): Promise<User> {
+  async findOne(filters_query: FilterGetOneUser): Promise<UserEntity> {
     try {
-      const { filters } = new FilterBuilder<User>()
-        .getInstance(dbsType)
-        .setFilterItem('id', '$eq', filtersQuery?.id)
-        .setFilterItem('email', '$eq', filtersQuery?.email)
+      const { filters } = new FilterTypeOrmBuilder<IUser>()
+        .setFilterItem('id', '$eq', filters_query?.id)
+        .setFilterItem('email', '$eq', filters_query?.email)
         .buildQuery();
-      filters['relations'] = ['roles'];
-      const user = await this.userRepo.findOne({ filters });
+      const user = await this.userRepo.findOne({ filters, relations: ['roles'], fields: ['id', 'roles', 'password'] });
       return user;
     } catch (error) {
       throw error;
     }
   }
 
-  async getUserById(id: number): Promise<User> {
+  async getUserById(id: number): Promise<UserEntity> {
     try {
       const user = await this.findOne({ id });
       throwIfNotExists(user, 'User not found !');
@@ -69,24 +61,19 @@ export class UserService {
       }
       return await this.userRepo.getUserPermissionByIdAndRole(id, roles);
     } catch (error) {
-      console.log(error);
       throw error;
     }
   }
 
-  async updateOne(options: IUpdateOptions<User>): Promise<User> {
+  async updateOne(options: IUpdateOptions<UserEntity>): Promise<UserEntity> {
     try {
-      const { filters: filtersQuery, session, entity } = options;
-      const { filters } = new FilterBuilder<User>()
-        .getInstance(dbsType)
-        .setFilterItem('id', '$eq', filtersQuery?.id)
-        .buildQuery();
+      const { filters: filters_query, session, entity } = options;
+      const { filters } = new FilterTypeOrmBuilder<IUser>().setFilterItem('id', '$eq', filters_query?.id).buildQuery();
       if (session) {
         return await this.userRepo.findOneAndUpdate({ filters, entity, session });
       }
       return await this.userRepo.findOneAndUpdate({ filters, entity });
     } catch (error) {
-      console.log('Error:', error);
       throw error;
     }
   }

@@ -1,13 +1,16 @@
-import { Injectable, Inject } from '@nestjs/common';
-import { IResponse, FilterBuilder, DBS_TYPE } from '@fdgn/common';
-import { IRoleRepo, ROLE_PROVIDER, Role } from '@fdgn/share-domain';
+import { Inject, Injectable } from '@nestjs/common';
 
+import { IResponse } from '@fdgn/common';
+import { FilterTypeOrmBuilder } from '@fdgn/typeorm';
+
+import { REPO } from '../../common';
+import { IRoleRepo } from '../../domain';
 import { CreateRoleDTO, FilterGetAllRole, FilterGetOneRole } from './dto';
-const dbsType = DBS_TYPE.TYPE_ORM;
+import { RoleEntity } from '../../infra';
 
 @Injectable()
 export class RoleService {
-  constructor(@Inject(ROLE_PROVIDER.TYPE_ORM_REPO) private roleRepo: IRoleRepo) {}
+  constructor(@Inject(REPO.ROLE) private roleRepo: IRoleRepo) {}
 
   async create(dto: CreateRoleDTO): Promise<IResponse> {
     try {
@@ -19,12 +22,9 @@ export class RoleService {
     }
   }
 
-  async findAll(dto: FilterGetAllRole): Promise<Role[]> {
+  async findAll(dto: FilterGetAllRole): Promise<RoleEntity[]> {
     try {
-      const { filters } = new FilterBuilder<Role>()
-        .getInstance(dbsType)
-        .setFilterItem('id', '$in', dto?.ids)
-        .buildQuery();
+      const { filters } = new FilterTypeOrmBuilder<RoleEntity>().setFilterItem('id', '$in', dto?.ids).buildQuery();
       return await this.roleRepo.findAll({ filters });
     } catch (error) {
       console.log(error);
@@ -32,11 +32,8 @@ export class RoleService {
     }
   }
 
-  async findOne(dto: FilterGetOneRole): Promise<Role> {
-    const { filters } = new FilterBuilder<Role>()
-      .getInstance(dbsType)
-      .setFilterItem('name', '$eq', dto?.name)
-      .buildQuery();
+  async findOne(dto: FilterGetOneRole): Promise<RoleEntity> {
+    const { filters } = new FilterTypeOrmBuilder<RoleEntity>().setFilterItem('name', '$eq', dto?.name).buildQuery();
     return await this.roleRepo.findOne({ filters });
   }
 }

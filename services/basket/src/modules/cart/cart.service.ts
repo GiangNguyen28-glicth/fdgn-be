@@ -5,33 +5,33 @@ import axios from 'axios';
 
 import { IResponse, OK } from '@fdgn/common';
 import { RedisClientService } from '@fdgn/redis';
-import { Product, User } from '@fdgn/share-domain';
+import { IProduct, IUser } from '@fdgn/share-ecm';
 import { RabbitMQProducer, ProducerMode } from '@fdgn/rabbitmq';
 
 import { CheckOutDTO, CreateItemToCartDTO } from './dto';
 import { CartItem } from './models';
-import { IOrder } from './messages';
+import { IOrderCreated } from './messages';
 @Injectable()
 export class CartService implements OnModuleInit {
   private readonly CART_REDIS_KEY = 'CART';
   constructor(
     private redisService: RedisClientService,
-    private producer: RabbitMQProducer<IOrder>,
+    private producer: RabbitMQProducer<IOrderCreated>,
     private configService: ConfigService,
   ) {}
 
   async onModuleInit() {
-    await this.producer.setConfig({
+    this.producer.setConfig({
       mode: ProducerMode.Exchange,
-      exchange: this.configService.get<string>('producer.orderProcessing.exchange'),
-      routingKey: this.configService.get<string>('producer.orderProcessing.routingKey'),
+      exchange: this.configService.get<string>('basketProducer.orderCreated.exchange') || '',
+      routingKey: this.configService.get<string>('basketProducer.orderCreated.routingKey') || '',
     });
   }
 
-  async addToCart(dto: CreateItemToCartDTO, user: User): Promise<IResponse> {
+  async addToCart(dto: CreateItemToCartDTO, user: IUser): Promise<IResponse> {
     try {
       const response = await axios.get(`http://localhost:4017/catalog/product/${dto.product_id}`);
-      const product: Product = await response.data;
+      const product: IProduct = await response.data;
       let cart_items = await this.redisService.get<CartItem[]>({ key: this.getCartRedisKey(user.id) });
       if (isNil(cart_items)) {
         cart_items = [new CartItem(Number(product.shop_id), [{ product_id: dto.product_id, quantity: dto.quantity }])];
@@ -44,7 +44,7 @@ export class CartService implements OnModuleInit {
     }
   }
 
-  async getCartItems(user: User): Promise<CartItem[]> {
+  async getCartItems(user: IUser): Promise<CartItem[]> {
     try {
       const cart_items = await this.redisService.get<CartItem[]>({ key: this.getCartRedisKey(user.id) });
       if (isNil(cart_items)) {
@@ -56,10 +56,10 @@ export class CartService implements OnModuleInit {
     }
   }
 
-  async checkout(dto: CheckOutDTO, user: User): Promise<IResponse> {
+  async checkout(dto: CheckOutDTO, user: IUser): Promise<IResponse> {
     try {
       const response = await axios.get(`http://localhost:4017/catalog/product/${dto.items[0].product_id}`);
-      const product: Product = await response.data;
+      const product: IProduct = await response.data;
       await this.producer.publish([
         {
           products: [
@@ -77,7 +77,6 @@ export class CartService implements OnModuleInit {
       ]);
       return { success: true, message: OK };
     } catch (error) {
-      console.log('Error3: ', error);
       throw error;
     }
   }

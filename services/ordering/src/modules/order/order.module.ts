@@ -1,13 +1,15 @@
-import { Order } from '@fdgn/share-domain';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { OrderEntity, OrderRepoProvider } from '../../infra';
+import { OrderItemModule } from '../order-item';
+import { OrderCreatedConsumer } from './order.consumer';
 import { OrderController } from './order.controller';
 import { OrderService } from './order.service';
-import { OrderCreatedConsumer } from './order.consumer';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Order])],
+  imports: [TypeOrmModule.forFeature([OrderEntity]), OrderItemModule],
   controllers: [OrderController],
-  providers: [OrderService, OrderCreatedConsumer],
+  providers: [OrderService, OrderCreatedConsumer, OrderRepoProvider],
+  exports: [OrderService],
 })
 export class OrderModule {}

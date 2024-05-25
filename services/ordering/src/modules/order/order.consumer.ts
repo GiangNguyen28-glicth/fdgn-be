@@ -1,14 +1,17 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { RabbitConsumer } from '@fdgn/rabbitmq';
+import { IOrderCreated } from './messages';
+import { OrderService } from './order.service';
 
 @Injectable()
-export class OrderCreatedConsumer extends RabbitConsumer<any> {
-  constructor(protected configService: ConfigService) {
-    super(OrderCreatedConsumer.name, configService.get('orderingConsume.orderProcessing') as any);
+export class OrderCreatedConsumer extends RabbitConsumer<IOrderCreated> {
+  constructor(protected configService: ConfigService, private orderService: OrderService) {
+    super(OrderCreatedConsumer.name, configService.get('orderingConsume.orderCreated') as any);
   }
 
-  async process(sources: any): Promise<void> {
-    throw new Error('Method not implemented.');
+  async process(sources: IOrderCreated): Promise<void> {
+    const order = await this.orderService.create(sources);
+    console.log(JSON.stringify(order));
   }
 }

@@ -1,0 +1,3 @@
+export enum REPO {
+  NOTIFICATION = 'NOTIFICATION_REPO',
+}

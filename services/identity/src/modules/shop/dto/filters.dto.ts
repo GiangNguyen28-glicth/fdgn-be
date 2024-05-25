@@ -1,9 +1,9 @@
 import { FilterGetAll } from '@fdgn/common';
-import { Shop } from '@fdgn/share-domain';
-export class FilterGetOneShop implements Partial<Shop> {
+import { IShop } from '@fdgn/share-ecm';
+export class FilterGetOneShop implements Partial<IShop> {
   id?: number;
 }
 
-export class FilterGetAllShop extends FilterGetAll implements Partial<Shop> {
+export class FilterGetAllShop extends FilterGetAll implements Partial<IShop> {
   id?: number;
 }

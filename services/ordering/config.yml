@@ -1,9 +1,9 @@
 http:
   host: 'localhost'
-  port: 4017
-  contextPath: order
+  port: 4098
+  contextPath: ordering
 
-description: 'Order Service'
+description: 'Ordering Service'
 
 rabbit:
   protocol: amqp
@@ -21,7 +21,7 @@ rabbit:
     maxTimeout: 20000
 mongoose:
   uri: mongodb://localhost:27017/microservice
-  
+
 redis:
   url: localhost
   password: null
@@ -39,7 +39,7 @@ typeOrm:
   synchronize: true
   autoLoadEntities: true
   database: ordering
-  logging: true
+  logging: false
 
 throttler:
   - name: short
@@ -52,8 +52,8 @@ throttler:
     ttl: 60000
     limit: 100
 
-orderingConsume:
-  orderProcessing:
+orderingConsumer:
+  orderCreated:
     queue: order_created
     prefetchCount: 2
     queueType: quorum
@@ -63,3 +63,51 @@ orderingConsume:
     deadLetterRoutingKey: eca.order_created
     retryTime: 3000
     maxRetries: 1
+    numOfConsumer: 10
+  
+  orderConfirmedStock:
+    queue: order_confirmed_stock
+    prefetchCount: 2
+    queueType: quorum
+    exchange: eca
+    routingKey: eca.order_confirmed_stock
+    deadLetterExchange: eca
+    deadLetterRoutingKey: eca.order_confirmed_stock
+    retryTime: 3000
+    maxRetries: 1
+
+  orderConfirmedPayment:
+    queue: order_confirmed_payment
+    prefetchCount: 2
+    queueType: quorum
+    exchange: eca
+    routingKey: eca.order_confirmed_payment
+    deadLetterExchange: eca
+    deadLetterRoutingKey: eca.order_confirmed_payment
+    retryTime: 3000
+    maxRetries: 1
+
+  orderRejectedStock:
+    queue: order_rejected_stock
+    prefetchCount: 2
+    queueType: quorum
+    exchange: eca
+    routingKey: eca.order_rejected_stock
+    deadLetterExchange: eca
+    deadLetterRoutingKey: eca.order_rejected_stock
+    retryTime: 3000
+    maxRetries: 1
+
+orderingProducer:
+  cartDeleted:
+    exchange: eca
+    routingKey: eca.cart_deleted
+  productValidationStock:
+    exchange: eca
+    routingKey: eca.product_validation_stock
+  paymentCheckoutOrder:
+    exchange: eca
+    routingKey: eca.payment_checkout_order
+  productSubtractStock:
+    exchange: eca
+    routingKey: eca.product_subtract_stock

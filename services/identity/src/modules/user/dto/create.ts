@@ -1,8 +1,8 @@
-import { Role, User } from '@fdgn/share-domain';
+import { RoleEntity, UserEntity } from '../../../infra';
 
-export class CreateUserDTO implements Partial<User> {
+export class CreateUserDTO implements Partial<UserEntity> {
   name?: string;
   email?: string;
   password?: string;
-  roles?: Role[] | undefined;
+  roles?: RoleEntity[];
 }

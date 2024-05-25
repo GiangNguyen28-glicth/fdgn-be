@@ -3,7 +3,7 @@ http:
   port: 4017
   contextPath: catalog
 
-description: 'Product Service'
+description: 'Catalog Service'
 
 rabbit:
   protocol: amqp
@@ -39,3 +39,34 @@ throttler:
   - name: long
     ttl: 60000
     limit: 100
+
+catalogConsumer:
+  productValidationStock:
+    queue: product_validation_stock
+    prefetchCount: 2
+    queueType: quorum
+    exchange: eca
+    routingKey: eca.product_validation_stock
+    deadLetterExchange: eca
+    deadLetterRoutingKey: eca.product_validation_stock
+    retryTime: 3000
+    maxRetries: 1
+  productSubtractStock:
+    queue: product_subtract_stock
+    prefetchCount: 1
+    queueType: quorum
+    exchange: eca
+    routingKey: eca.product_subtract_stock
+    deadLetterExchange: eca
+    deadLetterRoutingKey: eca.product_subtract_stock
+    retryTime: 3000
+    maxRetries: 1
+    numOfConsumer: 10
+
+catalogProducer:
+  orderConfirmedStock:
+    exchange: eca
+    routingKey: eca.order_confirmed_stock
+  orderRejectedStock:
+    exchange: eca
+    routingKey: eca.order_rejected_stock

@@ -3,7 +3,7 @@ import { PassportStrategy } from '@nestjs/passport';
 import { ConfigService } from '@nestjs/config';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 
-import { User } from '@fdgn/share-domain';
+import { IUser } from '@fdgn/share-ecm';
 
 import { UserService } from '../../modules/user/user.service';
 import { IAccessTokenPayload } from '../interfaces';
@@ -17,7 +17,7 @@ export class AtStrategy extends PassportStrategy(Strategy, 'jwt') {
       secretOrKey: configService.get<string>('authConfig.accessTokenKey'),
     });
   }
-  async validate(payload: IAccessTokenPayload): Promise<User> {
+  async validate(payload: IAccessTokenPayload): Promise<IUser> {
     try {
       const user = await this.userService.findOne({ id: payload.id });
       if (!user) {

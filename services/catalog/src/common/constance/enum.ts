@@ -1,0 +1,10 @@
+export enum PRODUCT_STATUS {
+  ACTIVE = 1,
+  IN_ACTIVE = 0,
+}
+
+export enum REPO {
+  CATE = 'CATE_REPO',
+  PRODUCT = 'PRODUCT_REPO',
+  LOG_EVENT = 'LOG_EVENT_REPO'
+}

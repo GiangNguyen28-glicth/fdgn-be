@@ -2,7 +2,6 @@
   "name": "@fdgn/basket-service",
   "version": "1.0.1",
   "license": "MIT",
-  "private": false,
   "scripts": {
     "build": "rimraf -rf dist && nest build -p tsconfig.json",
     "prepublishOnly": "yarn build",
@@ -10,6 +9,6 @@
     "start": "node dist/main.js"
   },
   "dependencies": {
-    "@fdgn/share-domain": "1.0.2-beta.13"
+    "@fdgn/share-ecm": "1.0.2-beta.13"
   }
 }

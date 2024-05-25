@@ -1,0 +1,4 @@
+export enum REPO {
+  LOG_EVENT = 'LOG_EVENT_REPO',
+  BILLING = 'BILLING_REPO'
+}

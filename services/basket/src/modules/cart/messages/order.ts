@@ -1,6 +1,6 @@
 import { CardDTO } from '../dto';
 
-export interface IOrder {
+export interface IOrderCreated {
   products: IProductItem[];
   user_id: number;
   card: CardDTO;

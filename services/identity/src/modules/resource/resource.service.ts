@@ -1,13 +1,14 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { IResourceRepo, RESOURCE_PROVIDER } from '@fdgn/share-domain';
 import { IResponse } from '@fdgn/common';
 
 import { CreateResourceDTO } from './dto';
 import { RoleService } from '../role';
+import { REPO } from '../../common';
+import { IResourceRepo } from '../../domain';
 @Injectable()
 export class ResourceService {
   constructor(
-    @Inject(RESOURCE_PROVIDER.TYPE_ORM_REPO) private resourceRepo: IResourceRepo,
+    @Inject(REPO.RESOURCE) private resourceRepo: IResourceRepo,
     private roleService: RoleService,
   ) {}
 

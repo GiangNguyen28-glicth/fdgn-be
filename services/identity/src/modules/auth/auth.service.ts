@@ -4,7 +4,7 @@ import { JwtService } from '@nestjs/jwt';
 
 import { ProducerMode, RabbitMQProducer } from '@fdgn/rabbitmq';
 import { IResponse, hash, throwIfNotExists, compareHash } from '@fdgn/common';
-import { RoleType } from '@fdgn/share-domain';
+import { RoleType } from '@fdgn/share-ecm';
 
 import { AuthConfig, IAccessTokenPayload, IToken } from '../../common';
 import { UserService } from '../user';
@@ -60,13 +60,12 @@ export class AuthService implements OnModuleInit {
       const { email, password } = dto;
       const user = await this.userService.findOne({ email });
       throwIfNotExists(user, 'Email not found !');
-      const isCorrectPw = await compareHash(password, user.password);
-      if (!isCorrectPw) {
+      const is_correct_pw = await compareHash(password, user.password);
+      if (!is_correct_pw) {
         throw new BadRequestException('Password not correct !');
       }
       return await this.generateTokens({ id: user.id });
     } catch (error) {
-      console.log(error);
       throw error;
     }
   }

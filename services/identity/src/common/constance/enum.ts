@@ -1,0 +1,6 @@
+export enum REPO {
+  USER = 'USER_REPO',
+  SHOP = 'SHOP_REPO',
+  ROLE = 'ROLE_REPO',
+  RESOURCE = 'RESOURCE_REPO',
+}

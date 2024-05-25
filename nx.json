@@ -3,9 +3,22 @@
     "default": {
       "runner": "nx/tasks-runners/default",
       "options": {
-        "cacheableOperations": []
+        "cacheableOperations": ["build"],
+        "cacheDirectory": ".yarn/nxcache"
       }
     }
   },
-  "targetDefaults": {}
+  "targetDefaults": {
+    "dev": {},
+    "dep:upgrade": {
+      "dependsOn": ["^dep:upgrade"]
+    },
+    "migrate": {
+      "dependsOn": ["^migrate"]
+    },
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["{projectRoot}/dist"]
+    }
+  }
 }

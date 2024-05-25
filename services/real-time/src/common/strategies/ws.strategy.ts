@@ -4,7 +4,7 @@ import { ConfigService } from '@nestjs/config';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import axios from 'axios';
 
-import { User } from '@fdgn/share-domain';
+import { User } from '@fdgn/share-ecm';
 
 @Injectable()
 export class WsStrategy extends PassportStrategy(Strategy, 'ws') {

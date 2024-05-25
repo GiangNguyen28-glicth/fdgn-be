@@ -9,7 +9,6 @@ import {
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
 
-import { WebsocketExceptionsFilter } from '@fdgn/common';
 
 import { WsGuard } from '../../common';
 
@@ -23,7 +22,7 @@ import { WsGuard } from '../../common';
     allowedHeaders: ['accessToken'],
   },
 })
-@UseFilters(WebsocketExceptionsFilter)
+// @UseFilters(WebsocketExceptionsFilter)
 @UsePipes(new ValidationPipe({ transform: true }))
 export class SocketGateway implements OnGatewayConnection, OnGatewayDisconnect, OnGatewayInit, OnModuleInit {
   constructor() {}

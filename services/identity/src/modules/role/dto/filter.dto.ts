@@ -1,10 +1,10 @@
-import { Role, RoleType } from '@fdgn/share-domain';
+import { IRole, RoleType } from '@fdgn/share-ecm';
 import { FilterGetAll } from '@fdgn/common';
 
-export class FilterGetOneRole implements Partial<Role> {
+export class FilterGetOneRole implements Partial<IRole> {
   name?: RoleType;
 }
 
-export class FilterGetAllRole extends FilterGetAll implements Partial<Role> {
+export class FilterGetAllRole extends FilterGetAll implements Partial<IRole> {
   name?: RoleType;
 }

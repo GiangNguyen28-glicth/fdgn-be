@@ -1,9 +1,9 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsNotEmpty } from 'class-validator';
 
-import { Permission, Resource, Role } from '@fdgn/share-domain';
+import { IResource, Permission } from '@fdgn/share-ecm';
 
-export class CreateResourceDTO implements Partial<Resource> {
+export class CreateResourceDTO implements Partial<IResource> {
   @ApiProperty()
   @IsNotEmpty()
   name?: string;

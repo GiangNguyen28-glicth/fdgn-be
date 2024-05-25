@@ -1,14 +1,14 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { Role, RoleTypeOrmProvider } from '@fdgn/share-domain';
+import { RoleEntity, RoleRepoProvider } from '../../infra';
 import { RoleController } from './role.controller';
 import { RoleService } from './role.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Role])],
+  imports: [TypeOrmModule.forFeature([RoleEntity])],
   controllers: [RoleController],
-  providers: [RoleTypeOrmProvider, RoleService],
+  providers: [RoleRepoProvider, RoleService],
   exports: [RoleService]
 })
 export class RoleModule {}

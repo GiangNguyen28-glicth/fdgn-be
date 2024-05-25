@@ -39,14 +39,23 @@ throttler:
     ttl: 60000
     limit: 100
 
-accountingConsume:
-  paymentProcessing:
-    queue: payment_processing
+accountingConsumer:
+  paymentCheckoutOrder:
+    queue: payment_checkout_order
     prefetchCount: 2
     queueType: quorum
     exchange: eca
-    routingKey: eca.payment_processing
+    routingKey: eca.payment_checkout_order
     deadLetterExchange: eca
-    deadLetterRoutingKey: eca.payment_processing.errors
+    deadLetterRoutingKey: eca.payment_checkout_order.errors
     retryTime: 3000
     maxRetries: 1
+
+accountingProducer:
+  orderConfirmedPayment:
+    exchange: eca
+    routingKey: eca.order_confirmed_payment
+    
+stripe:
+  clientId: pk_test_51LNC3lCusYszZLeuaMpqfLXOxDpL7Aonfe9waLgjrB1dU6TsnmE3f3CTxB2KVueo6r5YdZx6qNdRxEzyHHQ7k5rd00TYTKuq9X
+  clientSecretKey: sk_test_51LNC3lCusYszZLeuiI5tii8ydiTB5GkHLt9I2e1MAgrSOIncsNKVEuJD4rtTQt87FuypROmPGNCF9yyh4k6qSciS0070uMMnzZ

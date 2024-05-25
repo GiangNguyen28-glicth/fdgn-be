@@ -1,9 +1,9 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsNotEmpty } from '@fdgn/common';
 
-import { Role, RoleType } from '@fdgn/share-domain';
+import { RoleType, IRole } from '@fdgn/share-ecm';
 
-export class CreateRoleDTO implements Partial<Role> {
+export class CreateRoleDTO implements Partial<IRole> {
   @ApiPropertyOptional({ type: 'enum', enum: RoleType })
   @IsNotEmpty()
   name: RoleType;

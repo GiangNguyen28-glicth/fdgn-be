@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 
-import { Billing, BillingSchema } from '@fdgn/share-domain';
+import { Billing, BillingSchema } from '@fdgn/share-ecm';
 
 import { PaymentController } from './payment.controller';
 import { PaymentService } from './payment.service';

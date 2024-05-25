@@ -1,4 +1,4 @@
-import { Shop } from '@fdgn/share-domain';
-export class CreateShopDTO implements Partial<Shop> {
+import { IShop } from '@fdgn/share-ecm';
+export class CreateShopDTO implements Partial<IShop> {
   name?: string;
 }
