@@ -13,10 +13,9 @@
     "dep:upgrade": "ncu -p yarn -f /^@ynm*/ -u"
   },
   "dependencies": {
-    "@fdgn/common": "^1.1.13",
-    "@fdgn/core": "^1.1.11",
+    "@fdgn/common": "^1.1.15",
     "@fdgn/mongoose": "^1.1.13",
-    "@fdgn/rabbitmq": "^1.1.13",
+    "@fdgn/rabbitmq": "^1.1.15",
     "@fdgn/typeorm": "^1.1.13",
     "axios": "^1.6.8",
     "body-parser": "^1.20.2",

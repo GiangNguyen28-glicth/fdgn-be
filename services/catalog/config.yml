@@ -1,7 +1,11 @@
 http:
-  host: 'localhost'
+  host: localhost
   port: 4017
   contextPath: catalog
+
+grpc:
+  host: localhost
+  port: 4018
 
 description: 'Catalog Service'
 

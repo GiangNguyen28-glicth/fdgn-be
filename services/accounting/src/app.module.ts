@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
 import { MongooseModule } from '@nestjs/mongoose';
-import { PrometheusModule } from '@willsoto/nestjs-prometheus';
 
 import { CommonModule, LogModule } from '@fdgn/common';
 import { MongoDBModule } from '@fdgn/mongoose';
@@ -17,7 +16,6 @@ import { BillingSchema, LogEventSchema, RepoProvider } from './infra';
     MongoDBModule,
     LogModule,
     RabbitMQModule,
-    PrometheusModule.register({ defaultMetrics: { enabled: true } }),
     MongooseModule.forFeatureAsync([
       {
         name: 'log_events',

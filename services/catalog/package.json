@@ -11,6 +11,9 @@
   "dependencies": {
     "@faker-js/faker": "^8.4.1",
     "@fdgn/redis": "^1.1.11",
-    "@fdgn/share-ecm": "1.0.2-beta.13"
+    "@fdgn/share-ecm": "1.0.2-beta.13",
+    "@grpc/grpc-js": "^1.10.8",
+    "@grpc/proto-loader": "^0.7.13",
+    "@grpc/reflection": "^1.0.4"
   }
 }

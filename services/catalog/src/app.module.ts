@@ -1,13 +1,18 @@
 import { Module, NestMiddleware } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { PrometheusModule } from '@willsoto/nestjs-prometheus';
 
-import { CommonModule, LogModule, toKeyword } from '@fdgn/common';
+import { CommonModule, LogModule, toKeyword, MetricModule } from '@fdgn/common';
 import { MongoDBModule } from '@fdgn/mongoose';
 import { RabbitMQModule } from '@fdgn/rabbitmq';
 import { RedisClientModule } from '@fdgn/redis';
 
-import { CatalogIntegrationEventProvider, IntegrationEventHandlers, ModuleControllers, ModuleServices } from './app';
+import {
+  CatalogIntegrationEventProvider,
+  IntegrationEventHandlers,
+  ModuleControllers,
+  ModuleGrpcs,
+  ModuleServices,
+} from './app';
 import { AppController } from './app.controller';
 import { CategorySchema, LogEventSchema, ProductSchema, RepoProvider } from './infra';
 
@@ -18,7 +23,7 @@ import { CategorySchema, LogEventSchema, ProductSchema, RepoProvider } from './i
     MongoDBModule,
     RedisClientModule,
     LogModule,
-    PrometheusModule.register({ defaultMetrics: { enabled: true } }),
+    MetricModule,
     MongooseModule.forFeatureAsync([
       {
         name: 'products',
@@ -49,6 +54,7 @@ import { CategorySchema, LogEventSchema, ProductSchema, RepoProvider } from './i
         },
       },
     ]),
+    ...ModuleGrpcs,
   ],
   controllers: [AppController, ...ModuleControllers],
   providers: [...RepoProvider, ...IntegrationEventHandlers, CatalogIntegrationEventProvider, ...ModuleServices],

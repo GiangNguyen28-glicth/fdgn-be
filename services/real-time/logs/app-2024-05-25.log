@@ -1,0 +1,7 @@
+[32m[MyApp] 7384   - [39m5/25/2024, 5:38:18 PM [32m    LOG[39m [33m[NestApplication][39m [32mNest application successfully started[39m [33m+0ms[39m
+[32m[MyApp] 3492   - [39m5/25/2024, 5:44:37 PM [32m    LOG[39m [33m[RoutesResolver][39m [32mHealthRest {/api/v1/health}:[39m [33m+0ms[39m
+[32m[MyApp] 3492   - [39m5/25/2024, 5:44:37 PM [32m    LOG[39m [33m[RouterExplorer][39m [32mMapped {/health, GET} route[39m [33m+5ms[39m
+[32m[MyApp] 3492   - [39m5/25/2024, 5:44:37 PM [32m    LOG[39m [33m[NestApplication][39m [32mNest application successfully started[39m [33m+49ms[39m
+[32m[MyApp] 11824  - [39m5/25/2024, 5:45:19 PM [32m    LOG[39m [33m[RoutesResolver][39m [32mHealthRest {/api/v1/health}:[39m [33m+0ms[39m
+[32m[MyApp] 11824  - [39m5/25/2024, 5:45:19 PM [32m    LOG[39m [33m[RouterExplorer][39m [32mMapped {/health, GET} route[39m [33m+11ms[39m
+[32m[MyApp] 11824  - [39m5/25/2024, 5:45:19 PM [32m    LOG[39m [33m[NestApplication][39m [32mNest application successfully started[39m [33m+147ms[39m

@@ -1,0 +1,9 @@
+[32m[MyApp] 15464  - [39m5/25/2024, 5:48:40 PM [32m    LOG[39m [33m[RoutesResolver][39m [32mAppController {/catalog}:[39m [33m+0ms[39m
+[32m[MyApp] 15464  - [39m5/25/2024, 5:48:40 PM [32m    LOG[39m [33m[RouterExplorer][39m [32mMapped {/catalog, GET} route[39m [33m+23ms[39m
+[32m[MyApp] 15464  - [39m5/25/2024, 5:48:40 PM [32m    LOG[39m [33m[RoutesResolver][39m [32mProductController {/catalog/product}:[39m [33m+0ms[39m
+[32m[MyApp] 15464  - [39m5/25/2024, 5:48:40 PM [32m    LOG[39m [33m[RouterExplorer][39m [32mMapped {/catalog/product, GET} route[39m [33m+1ms[39m
+[32m[MyApp] 15464  - [39m5/25/2024, 5:48:40 PM [32m    LOG[39m [33m[RouterExplorer][39m [32mMapped {/catalog/product/dump-data, GET} route[39m [33m+1ms[39m
+[32m[MyApp] 15464  - [39m5/25/2024, 5:48:40 PM [32m    LOG[39m [33m[RouterExplorer][39m [32mMapped {/catalog/product/:id, GET} route[39m [33m+1ms[39m
+[32m[MyApp] 15464  - [39m5/25/2024, 5:48:40 PM [32m    LOG[39m [33m[RoutesResolver][39m [32mCategoryController {/catalog/category}:[39m [33m+1ms[39m
+[32m[MyApp] 15464  - [39m5/25/2024, 5:48:40 PM [32m    LOG[39m [33m[RouterExplorer][39m [32mMapped {/catalog/category, POST} route[39m [33m+1ms[39m
+[32m[MyApp] 15464  - [39m5/25/2024, 5:48:40 PM [32m    LOG[39m [33m[NestApplication][39m [32mNest application successfully started[39m [33m+107ms[39m

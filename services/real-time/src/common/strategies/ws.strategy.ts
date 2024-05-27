@@ -4,7 +4,7 @@ import { ConfigService } from '@nestjs/config';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import axios from 'axios';
 
-import { User } from '@fdgn/share-ecm';
+import { IUser } from '@fdgn/share-ecm';
 
 @Injectable()
 export class WsStrategy extends PassportStrategy(Strategy, 'ws') {
@@ -18,7 +18,7 @@ export class WsStrategy extends PassportStrategy(Strategy, 'ws') {
     this.identityApi = this.configService.get<string>('authConfig') as any;
   }
 
-  async validate({ _id }): Promise<User> {
+  async validate({ _id }): Promise<IUser> {
     try {
       const response = await axios.get(`${this.identityApi}/users/${_id}`);
       const user = await response.data;
