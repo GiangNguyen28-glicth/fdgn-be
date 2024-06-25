@@ -12,3 +12,4 @@ Docker/data
 .vscode
 .npmrc
 *.log
+logs/*
