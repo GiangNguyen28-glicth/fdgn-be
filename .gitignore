@@ -5,7 +5,7 @@ env-config.yml
 yarn-error.log
 lerna-debug.log
 .DS_Store
-Docker/data
+docker/data
 .yarn
 .yarnrc.yml
 .env
