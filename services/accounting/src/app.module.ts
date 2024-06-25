@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
 import { MongooseModule } from '@nestjs/mongoose';
 
-import { CommonModule, LogModule } from '@fdgn/common';
+import { CommonModule, LogModule, HttpModule } from '@fdgn/common';
 import { MongoDBModule } from '@fdgn/mongoose';
 import { RabbitMQModule } from '@fdgn/rabbitmq';
 
@@ -15,6 +15,7 @@ import { BillingSchema, LogEventSchema, RepoProvider } from './infra';
     CommonModule,
     MongoDBModule,
     LogModule,
+    HttpModule,
     RabbitMQModule,
     MongooseModule.forFeatureAsync([
       {

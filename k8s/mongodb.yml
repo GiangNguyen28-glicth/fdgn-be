@@ -3,7 +3,7 @@ kind: StatefulSet
 metadata:
   name: mongodb
 spec:
-  serviceName: "mongodb"
+  serviceName: 'mongodb'
   replicas: 1
   selector:
     matchLabels:
@@ -15,10 +15,10 @@ spec:
     spec:
       containers:
         - name: mongodb
-          image: mongo:latest
-          command:
-          - mongod
-          - --auth
+          image: mongo
+          # command:
+          # - mongod
+          # - --auth
           # - --bind_ip
           # - 0.0.0.0
           ports:
@@ -30,16 +30,16 @@ spec:
             # - name: init-user
             #   mountPath: /docker-entrypoint-initdb.d/mongo-init.js:ro
           env:
-            - name: MONGO_INITDB_ROOT_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: mongodb-auth
-                  key: username
-            - name: MONGO_INITDB_ROOT_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: mongodb-auth
-                  key: password
+            # - name: MONGO_INITDB_ROOT_USERNAME
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: mongodb-auth
+            #       key: username
+            # - name: MONGO_INITDB_ROOT_PASSWORD
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: mongodb-auth
+            #       key: password
       # volumes:
       #   - name: init-user
       #     hostPath:
@@ -48,7 +48,7 @@ spec:
     - metadata:
         name: mongodb-data
       spec:
-        accessModes: ["ReadWriteOnce"]
+        accessModes: ['ReadWriteOnce']
         resources:
           requests:
             storage: 1Gi
@@ -66,4 +66,3 @@ spec:
       port: 27017
       targetPort: 27017
       nodePort: 30002
-  type: NodePort

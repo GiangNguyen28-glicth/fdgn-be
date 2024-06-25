@@ -3,7 +3,7 @@ kind: StatefulSet
 metadata:
   name: rabbitmq
 spec:
-  serviceName: "rabbitmq"
+  serviceName: 'rabbitmq'
   replicas: 1
   selector:
     matchLabels:
@@ -14,24 +14,24 @@ spec:
         app: rabbitmq
     spec:
       containers:
-      - name: rabbitmq
-        image: rabbitmq:3.11-management
-        ports:
-        - containerPort: 5672
-          name: amqp
-        - containerPort: 15672
-          name: management
-        volumeMounts:
-        - name: rabbitmq-data
-          mountPath: /var/lib/rabbitmq
+        - name: rabbitmq
+          image: rabbitmq:3.11-management
+          ports:
+            - containerPort: 5672
+              name: amqp
+            - containerPort: 15672
+              name: management
+          volumeMounts:
+            - name: rabbitmq-data
+              mountPath: /var/lib/rabbitmq
   volumeClaimTemplates:
-  - metadata:
-      name: rabbitmq-data
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      resources:
-        requests:
-          storage: 1Gi
+    - metadata:
+        name: rabbitmq-data
+      spec:
+        accessModes: ['ReadWriteOnce']
+        resources:
+          requests:
+            storage: 1Gi
 
 ---
 apiVersion: v1
@@ -47,3 +47,16 @@ spec:
       targetPort: 15672
       nodePort: 30001
   type: NodePort
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name:
+spec:
+  selector:
+    app: rabbitmq
+  ports:
+    - protocol: TCP
+      port: 5672
+      targetPort: 5672

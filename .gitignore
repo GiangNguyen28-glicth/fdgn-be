@@ -11,3 +11,4 @@ Docker/data
 .env
 .vscode
 .npmrc
+*.log
